@@ -15,7 +15,7 @@ module.exports = {
     image: "mainBcg.png",
     twitterUsername: "@john_smilga"
   },
-  plugins: ["gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-react-helmet", "gatsby-plugin-styled-components", "gatsby-plugin-styled-components", {
+  plugins: ["gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-background-image", "gatsby-plugin-react-helmet", "gatsby-plugin-styled-components", {
     resolve: "gatsby-source-filesystem",
     options: {
       name: "images",
@@ -35,6 +35,12 @@ module.exports = {
       }, {
         baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
         tableName: "Customers",
+        mapping: {
+          image: "fileNode"
+        }
+      }, {
+        baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
+        tableName: "Hero",
         mapping: {
           image: "fileNode"
         }

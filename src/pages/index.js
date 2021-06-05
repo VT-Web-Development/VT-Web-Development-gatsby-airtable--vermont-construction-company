@@ -5,23 +5,24 @@ import {
   Hero,
   About,
   Projects,
-  Survey,
   Slider,
   GridProjects,
 } from '../components'
-import SEO from '../components/SEO'
+import Seo from '../components/SEO'
+
 const HomePage = ({ data }) => {
   const {
     allAirtable: { nodes: projects },
     customers: { nodes },
+    hero: { nodes: hero },
   } = data
+
   return (
     <Layout>
-      <Hero />
+      <Hero hero={hero} />
       <About />
       {/* <Projects projects={projects} title="latest projects" /> */}
       <GridProjects projects={projects} title="latest projects" />
-      <Survey />
       <Slider customers={nodes} />
     </Layout>
   )
@@ -42,7 +43,7 @@ export const query = graphql`
           image {
             localFiles {
               childImageSharp {
-                gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
+                gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
               }
             }
           }
@@ -69,6 +70,28 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+
+    hero: allAirtable(
+      filter: { table: { eq: "Hero" }, data: { name: { eq: "logo" } } }
+    ) {
+      nodes {
+        data {
+          name
+          image {
+            localFiles {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                  width: 500
+                )
+              }
+            }
+          }
+        }
+        id
       }
     }
   }

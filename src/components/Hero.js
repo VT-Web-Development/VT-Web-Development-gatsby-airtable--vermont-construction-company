@@ -1,24 +1,48 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
-const Hero = () => {
+import { Link, useStaticQuery } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { convertToBgImage } from 'gbimage-bridge'
+import BackgroundImage from 'gatsby-background-image'
+import { graphql } from 'gatsby'
+
+import CallToAction from './CallToAction'
+
+const Hero = ({ hero }) => {
+  const {
+    house: { nodes: house },
+  } = useStaticQuery(query)
+
+  const logoImage = hero[0].data.image.localFiles[0]
+  const { name: logoName } = hero[0].data
+  const backgroundImage =
+    house[0].data.image.localFiles[0].childImageSharp.fluid
+  const { name: backgroundImageName } = hero[0].data
+
   return (
     <Wrapper>
-      <StaticImage
-        src="../images/mainBcg.png"
-        layout="fullWidth"
-        placeholder="tracedSVG"
+      <BackgroundImage
+        Tag="section"
+        fluid={backgroundImage}
+        preserveStackingContext={true}
+        loading="lazy"
+        fadeIn
+        backgroundColor={`#040e18`}
         className="img"
-        alt="color palette"
-      />
-      <div className="info">
-        <article>
-          <h3>If you can dream it, we can create it</h3>
-          <h1>let your home be inique and stylish</h1>
-          <Link to="/projects">Projects</Link>
-        </article>
-      </div>
+        alt={backgroundImageName}
+      >
+        <div className="info">
+          <article>
+            <figure>
+              <GatsbyImage image={getImage(logoImage)} alt={logoName} />
+            </figure>
+
+            <CallToAction>
+              <Link to="/quote">Get Your Free Quote</Link>
+            </CallToAction>
+          </article>
+        </div>
+      </BackgroundImage>
     </Wrapper>
   )
 }
@@ -27,9 +51,11 @@ const Wrapper = styled.section`
   height: 100vh;
   margin-top: -5rem;
   position: relative;
+
   .img {
     height: 100%;
   }
+
   .info {
     position: absolute;
     top: 0;
@@ -40,37 +66,45 @@ const Wrapper = styled.section`
     place-items: center;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   }
+
   article {
     width: 85vw;
     max-width: 800px;
     color: var(--clr-white);
     text-align: center;
-    h1 {
-      text-transform: uppercase;
-      font-weight: 500;
-      line-height: 1.25;
-      margin: 2rem 0 3rem 0;
-      letter-spacing: 3px;
+
+    figure {
+      padding: 0px 0px 36px 0px;
     }
-    h3 {
-      font-weight: 400;
-      font-family: 'Caveat', cursive;
-    }
-    a {
+    .call-to-action {
       background: transparent;
-      border: 2px solid var(--clr-white);
-      padding: 0.25rem 1rem;
+      border: 5px solid var(--clr-primary-1);
+      padding: 10px 16px 10px 16px;
+
+      :hover {
+        background: var(--clr-primary-1);
+      }
+    }
+
+    .call-to-action a {
       text-transform: capitalize;
       letter-spacing: 5px;
       color: var(--clr-white);
-      font-size: 1rem;
+      font-size: 1.5rem;
       cursor: pointer;
       transition: var(--transition);
+
+      /* @media (max-width: 300px) {
+        letter-spacing: 0;
+        font-size: 0.5rem;
+      } */
+
+      /* @media (max-width: 430px) {
+        letter-spacing: 0;
+        font-size: 1rem;
+      } */
     }
-    a:hover {
-      background: var(--clr-white);
-      color: var(--clr-black);
-    }
+
     @media (min-width: 800px) {
       /* padding: 0 1rem; */
       a {
@@ -79,6 +113,30 @@ const Wrapper = styled.section`
       }
       h1 {
         letter-spacing: 5px;
+      }
+    }
+  }
+`
+
+const query = graphql`
+  {
+    house: allAirtable(
+      filter: { table: { eq: "Hero" }, data: { name: { eq: "house" } } }
+    ) {
+      nodes {
+        data {
+          name
+          image {
+            localFiles {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+        }
+        id
       }
     }
   }
