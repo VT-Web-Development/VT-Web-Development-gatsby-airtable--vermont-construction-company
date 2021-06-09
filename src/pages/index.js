@@ -14,12 +14,11 @@ const HomePage = ({ data }) => {
   const {
     allAirtable: { nodes: projects },
     customers: { nodes },
-    hero: { nodes: hero },
   } = data
 
   return (
     <Layout>
-      <Hero hero={hero} />
+      <Hero />
       <About />
       {/* <Projects projects={projects} title="latest projects" /> */}
       <GridProjects projects={projects} title="latest projects" />
@@ -70,28 +69,6 @@ export const query = graphql`
             }
           }
         }
-      }
-    }
-
-    hero: allAirtable(
-      filter: { table: { eq: "Hero" }, data: { name: { eq: "logo" } } }
-    ) {
-      nodes {
-        data {
-          name
-          image {
-            localFiles {
-              childImageSharp {
-                gatsbyImageData(
-                  layout: CONSTRAINED
-                  placeholder: BLURRED
-                  width: 500
-                )
-              }
-            }
-          }
-        }
-        id
       }
     }
   }

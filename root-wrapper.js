@@ -12,9 +12,9 @@ Variables
 :root {
   /* dark shades of primary color*/
   --clr-primary-1: hsl(56, 100%, 45%);
-  --clr-primary-2: hsl(21, 84%, 25%);
-  --clr-primary-3: hsl(21, 81%, 29%);
-  --clr-primary-4: hsl(21, 77%, 34%);
+  --clr-primary-2: hsl(56deg 71% 71%);
+  --clr-primary-3: hsl(209, 33%, 17%);
+  --clr-primary-4: 	hsl(58, 95%, 50%);
   /* primary/main color */
   --clr-primary-5: hsl(21, 62%, 45%);
 
@@ -63,6 +63,17 @@ Global Styles
   padding: 0;
   box-sizing: border-box;
 }
+
+html.js-focus-visible {
+  display: contents;
+}
+
+@media (max-width: 200px) {
+  html.js-focus-visible {
+    display: flex;
+  }
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -154,9 +165,74 @@ button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: var(--radius);
 }
+
 .btn:hover {
   background: var(--clr-primary-7);
   color: var(--clr-primary-1);
+}
+
+.getAQuote {
+      background: var(--clr-primary-1);
+    color: var(--clr-white);
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 5px solid rgb(230, 214, 0, 0.5);
+    text-decoration: none;
+    padding: 20px 16px 20px 16px;
+    box-shadow: rgba(230, 214, 0, 0.25) 0px 50px 100px -20px,
+      rgba(230, 214, 0, 0.3) 0px 30px 60px -30px;
+    background: linear-gradient(
+      var(--clr-primary-1),
+    );
+}
+
+.getAQuote:hover {
+  background: var(--clr-primary-2);
+  /* Effect */
+  transform: scale(1.03);
+}
+
+.getAQuote:active {
+  /* Effect */
+  transform: scale(0.98);
+}
+
+button.call-to-action {
+  color: var(--clr-white);
+  text-align: center;
+  font-weight: bold;
+  border-radius: 20px;
+  border: 2px solid rgb(230, 214, 0, 0.5);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  padding: 20px 16px 20px 16px;
+  box-shadow: inset 0 5px 0 var(--clr-primary-4), 0 8px 6px -6px #a6acac;
+  background: linear-gradient(
+    45deg,
+    var(--clr-primary-1),
+    var(--clr-primary-2)
+  );
+}
+
+button.call-to-action:hover {
+  background: var(--clr-primary-2);
+  /* Effect */
+  transform: scale(1.03);
+}
+
+button.call-to-action:active {
+  /* Effect */
+  transform: scale(0.98);
+}
+
+button.call-to-action a {
+  text-transform: capitalize;
+  letter-spacing: 5px;
+  color: var(--clr-primary-3);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 /* section */

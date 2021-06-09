@@ -7,21 +7,43 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: "Design Shop",
+    title: "Vermont Construction Company",
     description: "Gatsby Airtable Example. Built using Airtable, Algolia Search, Gatsby Background Image plugin and  React Context API. Containts two sliders, real-time Airtable updates and submenus. Styled using Styled-Components. ",
-    author: "@johnsmilga",
-    titleTemplate: "%s | Gatsby - Airtable",
-    url: "https://gatsby-airtable-design-project.netlify.app/",
+    author: "Krittiya Clark",
+    titleTemplate: "%s | Vermont Construction Company",
+    url: "https://vermontconstructioncompany.net",
     image: "mainBcg.png",
-    twitterUsername: "@john_smilga"
+    twitterUsername: "@vtwebdev"
   },
-  plugins: ["gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-background-image", "gatsby-plugin-react-helmet", "gatsby-plugin-styled-components", {
+  plugins: ["gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sitemap", "gatsby-background-image", "gatsby-plugin-react-helmet", "gatsby-plugin-styled-components", {
     resolve: "gatsby-source-filesystem",
     options: {
       name: "images",
       path: "".concat(__dirname, "/src/images")
     }
-  }, {
+  }, // {
+  //   resolve: 'gatsby-plugin-robots-txt',
+  //   options: {
+  //     host: 'https://www.vtwebdevelopment.com',
+  //     sitemap: 'https://www.vtwebdevelopment.com/sitemap.xml',
+  //     policy: [{ userAgent: '*', allow: '/' }],
+  //   },
+  // },
+  // {
+  //   resolve: `gatsby-plugin-offline`,
+  //   options: {
+  //     precachePages: [
+  //       `/src/pages/index.js/`,
+  //       `/src/pages/about.js/`,
+  //       `/src/pages/services.js/`,
+  //       `/src/pages/portfolio.js/*`,
+  //       `/src/pages/blog.js/*`,
+  //       `/src/pages/contact.js/`,
+  //       `/src/pages/newsletter.js`,
+  //     ],
+  //   },
+  // },
+  {
     resolve: "gatsby-source-airtable",
     options: {
       apiKey: process.env.GATSBY_AIRTABLE_API,

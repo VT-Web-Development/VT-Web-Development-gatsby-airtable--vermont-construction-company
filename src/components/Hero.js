@@ -1,23 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useStaticQuery } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { convertToBgImage } from 'gbimage-bridge'
 import BackgroundImage from 'gatsby-background-image'
 import { graphql } from 'gatsby'
 
 import CallToAction from './CallToAction'
 
-const Hero = ({ hero }) => {
+const Hero = () => {
   const {
     house: { nodes: house },
   } = useStaticQuery(query)
 
-  const logoImage = hero[0].data.image.localFiles[0]
-  const { name: logoName } = hero[0].data
   const backgroundImage =
     house[0].data.image.localFiles[0].childImageSharp.fluid
-  const { name: backgroundImageName } = hero[0].data
+  const { name: backgroundImageName } = house[0].data
 
   return (
     <Wrapper>
@@ -33,10 +29,7 @@ const Hero = ({ hero }) => {
       >
         <div className="info">
           <article>
-            <figure>
-              <GatsbyImage image={getImage(logoImage)} alt={logoName} />
-            </figure>
-
+            <h1>We Are Leading The Way Construction Works</h1>
             <CallToAction>
               <Link to="/quote">Get Your Free Quote</Link>
             </CallToAction>
@@ -73,37 +66,54 @@ const Wrapper = styled.section`
     color: var(--clr-white);
     text-align: center;
 
+    h1 {
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1.25;
+      margin: 2rem 0 3rem 0;
+      letter-spacing: 3px;
+    }
+
     figure {
       padding: 0px 0px 36px 0px;
     }
-    .call-to-action {
-      background: transparent;
-      border: 5px solid var(--clr-primary-1);
-      padding: 10px 16px 10px 16px;
+
+    /* .call-to-action {
+      color: var(--clr-white);
+      text-align: center;
+      font-weight: bold;
+      border-radius: 20px;
+      border: 2px solid rgb(230, 214, 0, 0.5);
+      -webkit-text-decoration: none;
+      text-decoration: none;
+      padding: 20px 16px 20px 16px;
+      box-shadow: inset 0 5px 0 var(--clr-primary-4), 0 8px 6px -6px #a6acac;
+      background: linear-gradient(
+        45deg,
+        var(--clr-primary-1),
+        var(--clr-primary-2)
+      );
 
       :hover {
         background: var(--clr-primary-1);
+
+        transform: scale(1.03);
+      }
+
+      :active {
+
+        transform: scale(0.98);
       }
     }
 
-    .call-to-action a {
+    .call-to-action-hero a {
       text-transform: capitalize;
       letter-spacing: 5px;
-      color: var(--clr-white);
+      color: var(--clr-primary-3);
       font-size: 1.5rem;
       cursor: pointer;
       transition: var(--transition);
-
-      /* @media (max-width: 300px) {
-        letter-spacing: 0;
-        font-size: 0.5rem;
-      } */
-
-      /* @media (max-width: 430px) {
-        letter-spacing: 0;
-        font-size: 1rem;
-      } */
-    }
+    } */
 
     @media (min-width: 800px) {
       /* padding: 0 1rem; */

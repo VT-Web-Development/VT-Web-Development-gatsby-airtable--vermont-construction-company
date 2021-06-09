@@ -1,81 +1,80 @@
-import React from 'react'
-import { FaCcStripe, FaCreditCard, FaAlipay } from 'react-icons/fa'
+"use strict";
 
-//! Using dummy URL.
-const DUMMY_URL = `/services/payments`
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.linkKeys = exports.links = void 0;
 
-export const links = {
+var _react = _interopRequireDefault(require("react"));
+
+var _fa = require("react-icons/fa");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var DUMMY_URL = "/services/payments";
+var links = {
   services: {
-    label: `Services`,
+    label: "Services",
     url: DUMMY_URL,
     isDropdown: true,
-
     //! Using function to lazy evaluate options.
-    getDropdownOptions: () => [
-      {
-        label: `Terminal`,
-        url: DUMMY_URL,
-      },
-      {
-        label: `Connect`,
-        url: DUMMY_URL,
-      },
-      {
-        label: `Billing`,
-        url: DUMMY_URL,
-      },
-    ],
+    getDropdownOptions: function getDropdownOptions() {
+      return [{
+        label: "Terminal",
+        url: DUMMY_URL
+      }, {
+        label: "Connect",
+        url: DUMMY_URL
+      }, {
+        label: "Billing",
+        url: DUMMY_URL
+      }];
+    }
   },
   about: {
-    label: `About`,
+    label: "About",
     url: DUMMY_URL,
     isDropdown: true,
-    getDropdownOptions: () => [
-      {
+    getDropdownOptions: function getDropdownOptions() {
+      return [{
         label: 'documentation',
-        url: DUMMY_URL,
-      },
-      {
+        url: DUMMY_URL
+      }, {
         label: 'libraries',
-        url: DUMMY_URL,
-      },
-      {
+        url: DUMMY_URL
+      }, {
         label: 'plugins',
-        url: DUMMY_URL,
-      },
-    ],
+        url: DUMMY_URL
+      }];
+    }
   },
   projects: {
-    label: `Projects`,
+    label: "Projects",
     url: DUMMY_URL,
     isDropdown: true,
-    getDropdownOptions: () => [
-      {
+    getDropdownOptions: function getDropdownOptions() {
+      return [{
         label: 'jobs',
-        url: DUMMY_URL,
-      },
-      {
+        url: DUMMY_URL
+      }, {
         label: 'customers',
-        url: DUMMY_URL,
-      },
-    ],
+        url: DUMMY_URL
+      }];
+    }
   },
   getAQuote: {
-    label: `Get A Quote`,
+    label: "Get A Quote",
     url: '/contact',
     isDropdown: false,
-
     // Pass an extra property props with classes
     // that will be used to insert dynamic classNames.
     props: {
-      classes: 'call-to-action',
-    },
-  },
-}
-
-export const linkKeys = Object.keys(links)
-
-// export default [
+      classes: 'call-to-action'
+    }
+  }
+};
+exports.links = links;
+var linkKeys = Object.keys(links); // export default [
 //   {
 //     page: 'services',
 //     label: 'services',
@@ -145,3 +144,5 @@ export const linkKeys = Object.keys(links)
 //     isDropdown: false,
 //   },
 // ]
+
+exports.linkKeys = linkKeys;
