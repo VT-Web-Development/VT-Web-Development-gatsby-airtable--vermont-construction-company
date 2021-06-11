@@ -10,13 +10,13 @@ import { GatsbyContext } from '../context/context'
 
 const Navbar = () => {
   const {
-    hero: { nodes: hero },
+    logo: { edges: logo },
   } = useStaticQuery(query)
 
   const { isSidebarOpen, showSidebar } = useContext(GatsbyContext)
 
-  const logoImage = hero[0].data.image.localFiles[0]
-  const { name: logoName } = hero[0].data
+  const logoImage = logo[0].node.data.image.gatsbyImageData
+  const logoName = logo[0].node.data.image.alt
 
   return (
     <Wrapper>
@@ -252,28 +252,25 @@ const Dropdown = styled.div`
 
 export const query = graphql`
   {
-    hero: allAirtable(
+    logo: allPrismicImages(
       filter: {
-        table: { eq: "Hero" }
-        data: { name: { eq: "Vermont Construction Company Logo" } }
+        data: { image: { alt: { eq: "Vermont Construction Company." } } }
       }
     ) {
-      nodes {
-        data {
-          name
-          image {
-            localFiles {
-              childImageSharp {
-                gatsbyImageData(
-                  layout: CONSTRAINED
-                  placeholder: BLURRED
-                  width: 150
-                )
-              }
+      edges {
+        node {
+          data {
+            image {
+              alt
+              gatsbyImageData(
+                width: 150
+                backgroundColor: "grey"
+                layout: CONSTRAINED
+                placeholder: BLURRED
+              )
             }
           }
         }
-        id
       }
     }
   }

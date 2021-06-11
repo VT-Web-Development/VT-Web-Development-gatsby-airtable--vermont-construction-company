@@ -49,6 +49,43 @@ module.exports = {
     //     ],
     //   },
     // },
+
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+
+        // Provide an object of Prismic custom type JSON schemas to load into
+        // Gatsby. This is required.
+        schemas: {
+          // Your custom types mapped to schemas
+          hero: require('./src/schemas/hero.json'),
+          images: require('./src/schemas/image.json'),
+          projects: require('./src/schemas/projects.json'),
+        },
+        // Provide a default set of Imgix image transformations applied to
+        // Imgix-backed gatsby-image fields. These options will override the
+        // defaults set by Prismic.
+        // See: https://docs.imgix.com/apis/url
+        imageImgixParams: {
+          auto: 'compress,format',
+          fit: 'max',
+          q: 50,
+        },
+
+        // Provide a default set of Imgix image transformations applied to
+        // the placeholder images of Imgix-backed gatsby-image fields. These
+        // parameters will be applied over those provided in the above
+        // `imageImgixParams` option.
+        // See: https://docs.imgix.com/apis/url
+        imagePlaceholderImgixParams: {
+          w: 100,
+          blur: 15,
+          q: 50,
+        },
+      },
+    },
     {
       resolve: `gatsby-source-airtable`,
       options: {

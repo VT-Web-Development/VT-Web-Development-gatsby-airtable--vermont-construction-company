@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useStaticQuery } from 'gatsby'
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+import { convertToBgImage } from 'gbimage-bridge'
 import BackgroundImage from 'gatsby-background-image'
 import { graphql } from 'gatsby'
 
@@ -8,25 +10,30 @@ import CallToAction from './CallToAction'
 
 const Hero = () => {
   const {
-    house: { nodes: house },
+    hero: { edges: hero },
   } = useStaticQuery(query)
 
   const backgroundImage =
-    house[0].data.image.localFiles[0].childImageSharp.fluid
-  const { name: backgroundImageName } = house[0].data
+    hero[0].node.data.body[0].primary.icon_image.gatsbyImageData
+  const backgroundImageName = hero[0].node.data.body[0].primary.icon_image.alt
+  const image = getImage(backgroundImage)
+
+  // Use like this:
+  const bgImage = convertToBgImage(image)
 
   return (
     <Wrapper>
       <BackgroundImage
         Tag="section"
-        fluid={backgroundImage}
+        {...bgImage}
+        preserveStackingContext
         preserveStackingContext={true}
         loading="lazy"
         fadeIn
         backgroundColor={`#040e18`}
         className="img"
-        alt={backgroundImageName}
       >
+        <GatsbyImage image={image} alt={backgroundImageName} />
         <div className="info">
           <article>
             <h1>We Are Leading The Way Construction Works</h1>
@@ -46,6 +53,10 @@ const Wrapper = styled.section`
   position: relative;
 
   .img {
+    height: 100%;
+  }
+
+  .gatsby-image-wrapper-constrained {
     height: 100%;
   }
 
@@ -130,23 +141,34 @@ const Wrapper = styled.section`
 
 const query = graphql`
   {
-    house: allAirtable(
-      filter: { table: { eq: "Hero" }, data: { name: { eq: "house" } } }
-    ) {
-      nodes {
-        data {
-          name
-          image {
-            localFiles {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid_withWebp
+    hero: allPrismicHero {
+      edges {
+        node {
+          data {
+            body {
+              ... on PrismicHeroDataBodyCallToAction {
+                id
+                primary {
+                  button_label
+                  button_link {
+                    url
+                  }
+                  icon_image {
+                    alt
+                    gatsbyImageData(
+                      backgroundColor: "grey"
+                      layout: CONSTRAINED
+                      placeholder: BLURRED
+                    )
+                  }
+                  title {
+                    text
+                  }
                 }
               }
             }
           }
         }
-        id
       }
     }
   }
