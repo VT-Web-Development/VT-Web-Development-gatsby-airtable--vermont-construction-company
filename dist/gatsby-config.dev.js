@@ -54,7 +54,10 @@ module.exports = {
         // Your custom types mapped to schemas
         hero: require('./src/schemas/hero.json'),
         images: require('./src/schemas/image.json'),
-        projects: require('./src/schemas/projects.json')
+        projects: require('./src/schemas/project.json'),
+        about: require('./src/schemas/about.json'),
+        contact: require('./src/schemas/contact.json'),
+        services: require('./src/schemas/services.json')
       },
       // Provide a default set of Imgix image transformations applied to
       // Imgix-backed gatsby-image fields. These options will override the

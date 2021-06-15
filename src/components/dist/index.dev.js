@@ -15,10 +15,10 @@ Object.defineProperty(exports, "Hero", {
     return _Hero["default"];
   }
 });
-Object.defineProperty(exports, "About", {
+Object.defineProperty(exports, "Services", {
   enumerable: true,
   get: function get() {
-    return _About["default"];
+    return _Services["default"];
   }
 });
 Object.defineProperty(exports, "Projects", {
@@ -50,7 +50,7 @@ var _Layout = _interopRequireDefault(require("./Layout"));
 
 var _Hero = _interopRequireDefault(require("./Hero"));
 
-var _About = _interopRequireDefault(require("./About"));
+var _Services = _interopRequireDefault(require("./Services"));
 
 var _Projects = _interopRequireDefault(require("./Projects"));
 

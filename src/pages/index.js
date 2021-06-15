@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import {
   Layout,
   Hero,
-  About,
+  Services,
   Projects,
   Slider,
   GridProjects,
@@ -19,7 +19,7 @@ const HomePage = ({ data }) => {
   return (
     <Layout>
       <Hero />
-      <About />
+      <Services />
       {/* <Projects projects={projects} title="latest projects" /> */}
       <GridProjects projects={projects} title="latest projects" />
       <Slider customers={nodes} />
