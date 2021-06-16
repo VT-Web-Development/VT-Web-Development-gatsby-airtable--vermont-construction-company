@@ -27,6 +27,12 @@ Object.defineProperty(exports, "Projects", {
     return _Projects["default"];
   }
 });
+Object.defineProperty(exports, "About", {
+  enumerable: true,
+  get: function get() {
+    return _About["default"];
+  }
+});
 Object.defineProperty(exports, "Survey", {
   enumerable: true,
   get: function get() {
@@ -53,6 +59,8 @@ var _Hero = _interopRequireDefault(require("./Hero"));
 var _Services = _interopRequireDefault(require("./Services"));
 
 var _Projects = _interopRequireDefault(require("./Projects"));
+
+var _About = _interopRequireDefault(require("./About"));
 
 var _Survey = _interopRequireDefault(require("./Survey"));
 

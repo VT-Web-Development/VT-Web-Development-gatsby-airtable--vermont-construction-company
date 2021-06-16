@@ -4,6 +4,7 @@ import {
   Layout,
   Hero,
   Services,
+  About,
   Projects,
   Slider,
   GridProjects,
@@ -20,6 +21,7 @@ const HomePage = ({ data }) => {
     <Layout>
       <Hero />
       <Services />
+      <About />
       {/* <Projects projects={projects} title="latest projects" /> */}
       <GridProjects projects={projects} title="latest projects" />
       <Slider customers={nodes} />

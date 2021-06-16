@@ -43,13 +43,11 @@ const Services = () => {
               service.node.data.body[0].items.map(serviceItem => {
                 const { title, description } = serviceItem
                 const { alt } = serviceItem.image
-                const image = serviceItem.image.url
-
                 {
-                  /* const image = serviceItem.image.gatsbyImageData */
+                  /* const image = serviceItem.image.url */
                 }
+                const image = serviceItem.image.gatsbyImageData
 
-                console.log(image)
                 return (
                   <MDBCol
                     md="4"
@@ -57,10 +55,14 @@ const Services = () => {
                     className="mb-4 d-flex align-items-stretch hover-overlay ripple shadow-1-strong rounded"
                   >
                     <MDBCard>
-                      <MDBView hover zoom>
-                        <MDBCardImage src={image} fluid="true" alt={alt} />
-                      </MDBView>
-                      {/* <GatsbyImage image={getImage(image)} alt={alt} /> */}
+                      {/* <MDBView hover zoom> */}
+                      <GatsbyImage
+                        image={getImage(image)}
+                        alt={alt}
+                        fluid="true"
+                      />
+                      {/* <MDBCardImage src={image} fluid="true" alt={alt} /> */}
+                      {/* </MDBView> */}
 
                       <MDBCardBody>
                         <MDBCardTitle>{title.text}</MDBCardTitle>
@@ -80,6 +82,15 @@ const Services = () => {
 const Wrapper = styled.section`
   .section-center {
     margin-top: 4rem;
+  }
+
+  h2 {
+    padding: 0 0 2rem 0;
+  }
+
+  .card {
+    background: var(--clr-grey-10);
+    box-shadow: none;
   }
 `
 

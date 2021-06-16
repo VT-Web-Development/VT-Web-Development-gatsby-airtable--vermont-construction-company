@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Title from './Title'
 import styled from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
+import Title from './Title'
 import SearchButtons from './SearchButtons'
 
 const Projects = ({ projects: data = [], title, page }) => {
