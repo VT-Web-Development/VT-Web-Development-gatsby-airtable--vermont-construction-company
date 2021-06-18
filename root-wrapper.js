@@ -1,5 +1,7 @@
 import React from 'react'
 import { createGlobalStyle } from 'styled-components'
+import SimpleReactLightbox from 'simple-react-lightbox'
+
 import { GatsbyProvider } from './src/context/context'
 
 const GlobalStyle = createGlobalStyle`
@@ -123,6 +125,11 @@ p {
 button {
     background-color: transparent;
     border: none;
+    outline: none;
+}
+
+button:focus {
+    outline: none;
 }
 
 @media screen and (min-width: 800px) {
@@ -150,9 +157,10 @@ button {
 }
 /*  global classes */
 
-.btn {
+${
+  '' /* .custom-button {
   text-transform: uppercase;
-  background: var(--clr-primary-5);
+  background: var(--clr-primary-1);
   color: var(--clr-primary-10);
   padding: 0.375rem 0.75rem;
   letter-spacing: var(--spacing);
@@ -166,28 +174,41 @@ button {
   border-radius: var(--radius);
 }
 
-.btn:hover {
-  background: var(--clr-primary-7);
-  color: var(--clr-primary-1);
+.custom-button:hover {
+  background: var(--clr-primary-2);
+
+  transform: scale(1.03);
+} */
 }
 
-.getAQuote {
-      background: var(--clr-primary-1);
-    color: var(--clr-white);
-    text-align: center;
-    font-weight: bold;
-    border-radius: 20px;
-    border: 5px solid rgb(230, 214, 0, 0.5);
-    text-decoration: none;
-    padding: 20px 16px 20px 16px;
-    box-shadow: rgba(230, 214, 0, 0.25) 0px 50px 100px -20px,
-      rgba(230, 214, 0, 0.3) 0px 30px 60px -30px;
-    background: linear-gradient(
-      var(--clr-primary-1),
-    );
+.getAQuote, .custom-button {
+  background: var(--clr-primary-1);
+  ${'' /* color: var(--clr-white); */}
+  text-align: center;
+  font-weight: bold;
+  border-radius: 20px;
+  border: 5px solid rgb(230, 214, 0, 0.5);
+  text-transform: capitalize;
+  text-decoration: none;
+  padding: 20px 16px 20px 16px;
+  box-shadow: rgba(230, 214, 0, 0.25) 0px 50px 100px -20px,
+    rgba(230, 214, 0, 0.3) 0px 30px 60px -30px;
+  background: linear-gradient(
+    45deg,
+    var(--clr-primary-1),
+    var(--clr-primary-2)
+  );
+
+  display: block;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.getAQuote:hover {
+.getAQuote, .custom-button a {
+  color: var(--clr-primary-3);
+}
+
+.getAQuote:hover, .custom-button:hover {
   background: var(--clr-primary-2);
   /* Effect */
   transform: scale(1.03);
@@ -257,8 +278,10 @@ button.call-to-action a {
 export const wrapRootElement = ({ element }) => {
   return (
     <>
-      <GlobalStyle />
-      <GatsbyProvider>{element}</GatsbyProvider>
+      <SimpleReactLightbox>
+        <GlobalStyle />
+        <GatsbyProvider>{element}</GatsbyProvider>
+      </SimpleReactLightbox>
     </>
   )
 }

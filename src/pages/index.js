@@ -13,7 +13,8 @@ import Seo from '../components/SEO'
 
 const HomePage = ({ data }) => {
   const {
-    allAirtable: { nodes: projects },
+    projects: { edges: projects },
+    // allAirtable: { nodes: projects },
     customers: { nodes },
   } = data
 
@@ -22,8 +23,8 @@ const HomePage = ({ data }) => {
       <Hero />
       <Services />
       <About />
-      {/* <Projects projects={projects} title="latest projects" /> */}
-      <GridProjects projects={projects} title="latest projects" />
+      <Projects projects={projects} title="Our Projects" />
+      {/* <GridProjects projects={projects} title="Our Projects" /> */}
       <Slider customers={nodes} />
     </Layout>
   )
@@ -31,6 +32,30 @@ const HomePage = ({ data }) => {
 
 export const query = graphql`
   {
+    projects: allPrismicProjects {
+      edges {
+        node {
+          data {
+            body {
+              ... on PrismicProjectsDataBodyImageGallery {
+                id
+                items {
+                  image {
+                    alt
+                    gatsbyImageData
+                    url
+                  }
+                }
+              }
+            }
+            title {
+              text
+            }
+          }
+        }
+      }
+    }
+
     allAirtable(
       filter: { table: { eq: "Projects" } }
       limit: 4

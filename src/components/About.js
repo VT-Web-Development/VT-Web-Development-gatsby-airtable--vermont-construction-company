@@ -12,9 +12,6 @@ const About = () => {
     about: { edges: aboutUS },
   } = useStaticQuery(query)
 
-  // const { title } = aboutUS.node.data.body[0].items
-  console.log(aboutUS)
-
   return (
     <Wrapper>
       <BackgroundColor>
@@ -25,11 +22,10 @@ const About = () => {
                 {aboutUS &&
                   aboutUS.map(about =>
                     about.node.data.body[0].items.map(item => {
-                      console.log(item)
                       const { optional_icon, title, description, number } = item
                       const { alt } = optional_icon
                       const image = optional_icon.gatsbyImageData
-                      console.log(number)
+
                       return (
                         <MDBCol md="12" key={title.text}>
                           <FlexLists key={number}>
@@ -54,8 +50,6 @@ const About = () => {
             <MDBCol md="5" className="p-5">
               {aboutUS &&
                 aboutUS.map((about, index) => {
-                  console.log(about)
-
                   const { title, description } = about.node.data.body[0].primary
 
                   return (
@@ -75,7 +69,7 @@ const About = () => {
 
 const Wrapper = styled.section`
   margin-top: 4rem;
-  padding: 5rem 0;
+  padding: 5rem 0 0 0;
 
   h2 {
     padding: 0 0 2rem 0;
@@ -94,9 +88,6 @@ const FlexLists = styled.article`
   display: grid;
   grid-template-columns: 50px 1fr;
   grid-gap: 1rem;
-  /* flex-direction: row;
-  justify-content: center;
-  align-items: center; */
 
   .info > h3 {
     color: var(--clr-primary-1);

@@ -1,28 +1,45 @@
-import React from 'react'
-import Title from './Title'
+import React, { useState } from 'react'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
+import { SRLWrapper } from 'simple-react-lightbox'
+import { useLightbox } from 'simple-react-lightbox'
+
+import Title from './Title'
+
 const GridProjects = ({ projects, title }) => {
+  const { openLightbox, closeLightbox } = useLightbox()
+
   return (
     <Wrapper>
       <Title title={title || 'projects'} />
-      <div className="tile-layout">
-        {projects.map((project, index) => {
-          const { id } = project
-          const { name, type } = project.data
-          const image = project.data.image.localFiles[0]
-          return (
-            <article key={id} className={`div-${index}`}>
-              <GatsbyImage image={getImage(image)} alt={name} className="img" />
-              <div className="info">
-                <p>- {type} -</p>
-                <h3>{name}</h3>
-              </div>
-            </article>
-          )
-        })}
-      </div>
+      <SRLWrapper>
+        <div className="tile-layout">
+          {projects.map(project =>
+            project.node.data.body[0].items.map((item, index) => {
+              const { alt } = item.image
+              const image = item.image.gatsbyImageData
+
+              return (
+                <button key={alt} onClick={() => openLightbox()}>
+                  <article className={`div-${index}`}>
+                    <GatsbyImage
+                      image={getImage(image)}
+                      alt={alt}
+                      className="img"
+                      srl_gallery_image="true"
+                    />
+                    <div className="info">
+                      <h3>{alt}</h3>
+                    </div>
+                  </article>
+                </button>
+              )
+            })
+          )}
+        </div>
+      </SRLWrapper>
       <Link to="/projects" className="btn">
         all projects
       </Link>

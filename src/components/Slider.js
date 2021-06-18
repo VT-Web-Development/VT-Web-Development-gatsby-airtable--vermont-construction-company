@@ -44,7 +44,7 @@ const Slider = ({ customers = [] }) => {
 
   return (
     <Wrapper className="section">
-      <Title title="reviews" />
+      <Title title="Client Testimonials" />
       <div className="section-center">
         {customers.map((customer, customerIndex) => {
           const {
@@ -89,7 +89,7 @@ const Slider = ({ customers = [] }) => {
 }
 
 const Wrapper = styled.div`
-  background: var(--clr-grey-10);
+  background: var(--clr-primary-5);
   .section-center {
     margin-top: 4rem;
     width: 80vw;

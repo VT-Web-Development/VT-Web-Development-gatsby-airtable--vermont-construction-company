@@ -2,12 +2,15 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { SRLWrapper } from 'simple-react-lightbox'
+import { useLightbox } from 'simple-react-lightbox'
 
 import Title from './Title'
 import SearchButtons from './SearchButtons'
 
 const Projects = ({ projects: data = [], title, page }) => {
   const [projects, setProjects] = React.useState(data)
+  const { openLightbox, closeLightbox } = useLightbox()
 
   const setBackToAll = () => {
     setProjects(data)
@@ -23,8 +26,33 @@ const Projects = ({ projects: data = [], title, page }) => {
           setBackToAll={setBackToAll}
         />
       )}
-      <div className="section-center">
-        {projects.map(item => {
+      <SRLWrapper>
+        <div className="section-center">
+          {projects.map(project =>
+            project.node.data.body[0].items.map(item => {
+              const { alt } = item.image
+              const image = item.image.gatsbyImageData
+
+              return (
+                <button key={alt} onClick={() => openLightbox()}>
+                  <article>
+                    <div className="image-container">
+                      <GatsbyImage
+                        image={getImage(image)}
+                        alt={alt}
+                        className="img"
+                        srl_gallery_image="true"
+                      />
+                      <div className="info">
+                        <h3>{alt}</h3>
+                      </div>
+                    </div>
+                  </article>
+                </button>
+              )
+            })
+          )}
+          {/* {projects.map(item => {
           const { id } = item
           const { name, type, image } = item.data
 
@@ -43,13 +71,22 @@ const Projects = ({ projects: data = [], title, page }) => {
               </div>
             </article>
           )
-        })}
-      </div>
-      {!page && (
-        <Link to="/projects" className="btn">
-          all projects
-        </Link>
-      )}
+        })} */}
+        </div>
+
+        {!page && (
+          <button className="custom-button">
+            <Link to="/projects">all projects</Link>
+          </button>
+        )}
+      </SRLWrapper>
+      {/* <div className="footer-section"> */}
+      {/* {!page && (
+        <button className="call-to-action">
+          <Link to="/projects">all projects</Link>
+        </button>
+      )} */}
+      {/* </div> */}
     </Wrapper>
   )
 }
@@ -60,9 +97,9 @@ const Wrapper = styled.section`
     margin-top: 4rem;
     max-width: var(--max-width);
     display: grid;
-    gap: 2rem;
+    /* gap: 2rem; */
     /* safari workaround */
-    grid-gap: 2rem;
+    /* grid-gap: 2rem; */
     .img {
       height: 100%;
       border-radius: var(--radius);
@@ -76,7 +113,7 @@ const Wrapper = styled.section`
     article:hover {
       box-shadow: var(--dark-shadow);
     }
-    .container {
+    .image-container {
       height: 15rem;
       position: relative;
       overflow: hidden;
@@ -123,12 +160,18 @@ const Wrapper = styled.section`
       }
     }
   }
-  a {
-    display: block;
-    width: 9rem;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 3rem;
+
+  button.custom-button {
+    margin-top: 5rem;
+    width: 10rem;
+    font-size: 1.2rem;
+
+    button.custom-button > a {
+      display: block;
+      width: 9rem;
+      text-align: center;
+      margin: 0 auto;
+    }
   }
 `
 export default Projects

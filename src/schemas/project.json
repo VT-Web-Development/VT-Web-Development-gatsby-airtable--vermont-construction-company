@@ -45,6 +45,13 @@
                   "thumbnails": [],
                   "label": "image"
                 }
+              },
+              "number": {
+                "type": "Number",
+                "config": {
+                  "label": "number",
+                  "placeholder": "number"
+                }
               }
             }
           }
