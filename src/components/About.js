@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, useStaticQuery } from 'gatsby'
+import { useStaticQuery } from 'gatsby'
 import { graphql } from 'gatsby'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
@@ -17,7 +17,7 @@ const About = () => {
       <BackgroundColor>
         <MDBContainer fluid>
           <MDBRow>
-            <MDBCol md="5" className="p-5 left">
+            <MDBCol md="6" className="p-5 left">
               <MDBRow>
                 {aboutUS &&
                   aboutUS.map(about =>
@@ -47,7 +47,7 @@ const About = () => {
                   )}
               </MDBRow>
             </MDBCol>
-            <MDBCol md="5" className="p-5">
+            <MDBCol md="6" className="p-5">
               {aboutUS &&
                 aboutUS.map((about, index) => {
                   const { title, description } = about.node.data.body[0].primary

@@ -5,6 +5,17 @@ import Projects from './Projects'
 import About from './About'
 import Survey from './Survey'
 import Slider from './Slider'
+import Contact from './Contact'
 import GridProjects from './GridProjects'
 
-export { Layout, Hero, Services, About, Projects, Survey, Slider, GridProjects }
+export {
+  Layout,
+  Hero,
+  Services,
+  About,
+  Projects,
+  Survey,
+  Slider,
+  Contact,
+  GridProjects,
+}

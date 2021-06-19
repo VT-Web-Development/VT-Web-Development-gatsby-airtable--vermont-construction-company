@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react'
-
-import Title from './Title'
 import styled from 'styled-components'
 import { FaQuoteRight } from 'react-icons/fa'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
+import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
+
+import Title from './Title'
 
 const Slider = ({ customers = [] }) => {
-  const [index, setIndex] = React.useState(0)
+  const [index, setIndex] = useState(0)
+  console.log(customers)
+
+  const customerSlide = customers.map(item => {
+    console.log(item.node.data.body[0].items.length)
+    return item.node.data.body[0].items
+  })
+  console.log(customerSlide)
 
   const nextSlide = () => {
     setIndex(oldIndex => {
       let index = oldIndex + 1
-      if (index > customers.length - 1) {
+      if (index > customerSlide.length - 1) {
         index = 0
       }
       return index
@@ -22,7 +30,7 @@ const Slider = ({ customers = [] }) => {
     setIndex(oldIndex => {
       let index = oldIndex - 1
       if (index < 0) {
-        index = customers.length - 1
+        index = customerSlide.length - 1
       }
       return index
     })
@@ -31,7 +39,7 @@ const Slider = ({ customers = [] }) => {
     let slider = setInterval(() => {
       setIndex(oldIndex => {
         let index = oldIndex + 1
-        if (index > customers.length - 1) {
+        if (index > customerSlide.length - 1) {
           index = 0
         }
         return index
@@ -43,141 +51,138 @@ const Slider = ({ customers = [] }) => {
   }, [index])
 
   return (
-    <Wrapper className="section">
-      <Title title="Client Testimonials" />
-      <div className="section-center">
-        {customers.map((customer, customerIndex) => {
-          const {
-            data: { image, name, title, quote },
-          } = customer
-          const customerImg = getImage(image.localFiles[0])
+    <Wrapper>
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="12">
+            <Title title="Client Testimonials" />
+          </MDBCol>
+        </MDBRow>
 
-          let position = 'nextSlide'
-          if (customerIndex === index) {
-            position = 'activeSlide'
-          }
-          if (
-            customerIndex === index - 1 ||
-            (index === 0 && customerIndex === customers.length - 1)
-          ) {
-            position = 'lastSlide'
-          }
+        <MDBRow>
+          {customers.map(item => {
+            console.log(item.node.data.body[0])
+            return item.node.data.body[0].items.map(
+              (customer, customerIndex) => {
+                console.log(customer)
+                const { image1, name1, title1, quote1 } = customer
+                const { alt } = image1
+                const customerImage = getImage(image1.gatsbyImageData)
 
-          return (
-            <article className={position} key={customerIndex}>
-              <GatsbyImage
-                image={customerImg}
-                className="img"
-                alt={name}
-              ></GatsbyImage>
-              <h4>{name}</h4>
-              <p className="title">{title}</p>
-              <p className="text">{quote}</p>
-              <FaQuoteRight className="icon" />
-            </article>
-          )
-        })}
-        <button className="prev" onClick={prevSlide}>
-          <FiChevronLeft />
-        </button>
-        <button className="next" onClick={nextSlide}>
-          <FiChevronRight />
-        </button>
-      </div>
+                return (
+                  <MDBCol md="4" key={customerIndex}>
+                    <FaQuoteRight className="icon" />
+
+                    <article>
+                      <GatsbyImage
+                        image={customerImage}
+                        className="img img-fluid rounded-circle hoverable"
+                        alt={alt}
+                      />
+                      <h4>{name1.text}</h4>
+                      <p className="title">{title1.text}</p>
+                      <p className="text">{quote1.text}</p>
+                    </article>
+                  </MDBCol>
+                )
+              }
+            )
+          })}
+        </MDBRow>
+      </MDBContainer>
     </Wrapper>
+
+    // <Wrapper className="section">
+    //   <Title title="Client Testimonials" />
+    //   <div className="section-center">
+    //     {customers.map(item => {
+    //       console.log(item.node.data.body[0])
+    //       return item.node.data.body[0].items.map((customer, customerIndex) => {
+    //         console.log(customer)
+    //         const { image1, name1, title1, quote1 } = customer
+    //         const { alt } = image1
+    //         const customerImage = getImage(image1.gatsbyImageData)
+    //         console.log(customerImage)
+    //         let position = 'nextSlide'
+    //         if (customerIndex === index) {
+    //           position = 'activeSlide'
+    //         }
+    //         if (
+    //           customerIndex === index - 1 ||
+    //           (index === 0 && customerIndex === customerSlide.length - 1)
+    //         ) {
+    //           position = 'lastSlide'
+    //         }
+    //         return (
+    //           <article className={position} key={customerIndex}>
+    //             <GatsbyImage image={customerImage} className="img" alt={alt} />
+    //             <h4>{name1.text}</h4>
+    //             <p className="title">{title1.text}</p>
+    //             <p className="text">{quote1.text}</p>
+    //             <FaQuoteRight className="icon" />
+    //           </article>
+    //         )
+    //       })
+    //     })}
+
+    //     <button className="prev" onClick={prevSlide}>
+    //       <FiChevronLeft />
+    //     </button>
+    //     <button className="next" onClick={nextSlide}>
+    //       <FiChevronRight />
+    //     </button>
+    //   </div>
+    // </Wrapper>
   )
 }
 
-const Wrapper = styled.div`
-  background: var(--clr-primary-5);
-  .section-center {
-    margin-top: 4rem;
-    width: 80vw;
-    height: 450px;
-    max-width: 800px;
-    text-align: center;
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    /* background: red; */
-    .img {
-      border-radius: 50%;
-      margin-bottom: 1rem;
+const Wrapper = styled.section`
+  padding: 5rem 0;
+  margin: 0 auto;
+  text-align: center;
+
+  article {
+    background: var(--clr-grey-10);
+    padding: 2rem;
+    border-radius: var(--radius);
+
+    @media (max-width: 800px) {
+      margin: 0 0 2rem 0;
     }
-    h4 {
-      text-transform: uppercase;
-      color: var(--clr-primary-5);
-      margin-bottom: 0.25rem;
-    }
-    .title {
-      text-transform: capitalize;
-      margin-bottom: 0.75rem;
-    }
-    .text {
-      max-width: 40em;
-      margin: 0 auto;
-      line-height: 2;
-      color: var(--clr-grey-5);
-    }
-    .icon {
-      font-size: 3rem;
-      margin-top: 1.5rem;
-      color: var(--clr-primary-5);
-    }
-    .prev,
-    .next {
-      position: absolute;
-      top: 200px;
-      transform: translateY(-50%);
-      background: var(--clr-grey-5);
-      color: var(--clr-white);
-      width: 1.25rem;
-      height: 1.25rem;
-      display: grid;
-      place-items: center;
-      border-color: transparent;
-      font-size: 1rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .prev:hover,
-    .next:hover {
-      background: var(--clr-primary-5);
-    }
-    .prev {
-      left: 0;
-    }
-    .next {
-      right: 0;
-    }
-    @media (min-width: 800px) {
-      .prev,
-      .next {
-        width: 2rem;
-        height: 2rem;
-        font-size: 1.5rem;
-      }
-    }
-    article {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: var(--transition);
-    }
-    article.activeSlide {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    article.lastSlide {
-      transform: translateX(-100%);
-    }
-    article.nextSlide {
-      transform: translateX(100%);
-    }
+  }
+
+  .img {
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    max-width: 150px;
+    height: 150px;
+  }
+
+  h2 {
+    padding: 0 0 2rem 0;
+  }
+
+  h4 {
+    text-transform: uppercase;
+    color: var(--clr-black);
+    margin-bottom: 0.25rem;
+  }
+  .title {
+    text-transform: capitalize;
+    margin-bottom: 0.75rem;
+  }
+  .text {
+    max-width: 40em;
+    margin: 0 auto;
+    line-height: 2;
+    color: var(--clr-grey-5);
+  }
+  .icon {
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    color: var(--clr-primary-5);
+    position: absolute;
+    transform: translate(-47%, -91%);
   }
 `
 export default Slider

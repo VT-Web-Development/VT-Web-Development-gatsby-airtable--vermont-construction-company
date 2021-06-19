@@ -52,26 +52,6 @@ const Projects = ({ projects: data = [], title, page }) => {
               )
             })
           )}
-          {/* {projects.map(item => {
-          const { id } = item
-          const { name, type, image } = item.data
-
-          return (
-            <article key={id}>
-              <div className="container">
-                <GatsbyImage
-                  image={getImage(image.localFiles[0])}
-                  alt={name}
-                  className="img"
-                />
-                <div className="info">
-                  <p>- {type} -</p>
-                  <h3>{name}</h3>
-                </div>
-              </div>
-            </article>
-          )
-        })} */}
         </div>
 
         {!page && (
@@ -119,6 +99,11 @@ const Wrapper = styled.section`
       overflow: hidden;
       border-radius: var(--radius);
       background: var(--clr-primary-7);
+
+      @media (max-width: 800px) {
+        margin: 0 0 2rem 0;
+      }
+
       &:hover .img {
         opacity: 0.2;
       }

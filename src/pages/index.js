@@ -7,6 +7,7 @@ import {
   About,
   Projects,
   Slider,
+  Contact,
   GridProjects,
 } from '../components'
 import Seo from '../components/SEO'
@@ -15,7 +16,7 @@ const HomePage = ({ data }) => {
   const {
     projects: { edges: projects },
     // allAirtable: { nodes: projects },
-    customers: { nodes },
+    customers: { edges: customers },
   } = data
 
   return (
@@ -25,7 +26,8 @@ const HomePage = ({ data }) => {
       <About />
       <Projects projects={projects} title="Our Projects" />
       {/* <GridProjects projects={projects} title="Our Projects" /> */}
-      <Slider customers={nodes} />
+      <Slider customers={customers} />
+      <Contact />
     </Layout>
   )
 }
@@ -56,6 +58,40 @@ export const query = graphql`
       }
     }
 
+    customers: allPrismicTestimonails {
+      edges {
+        node {
+          data {
+            body {
+              ... on PrismicTestimonailsDataBodyFaqSection {
+                id
+                items {
+                  image1 {
+                    alt
+                    gatsbyImageData
+                  }
+                  name1 {
+                    text
+                  }
+                  quote1 {
+                    text
+                  }
+                  title1 {
+                    text
+                  }
+                }
+                primary {
+                  title {
+                    text
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     allAirtable(
       filter: { table: { eq: "Projects" } }
       limit: 4
@@ -77,27 +113,27 @@ export const query = graphql`
         id
       }
     }
-    customers: allAirtable(filter: { table: { eq: "Customers" } }) {
-      nodes {
-        id
-        data {
-          quote
-          title
-          name
-          image {
-            localFiles {
-              childImageSharp {
-                gatsbyImageData(
-                  width: 150
-                  height: 150
-                  placeholder: TRACED_SVG
-                )
-              }
-            }
-          }
-        }
-      }
-    }
+    # customers: allAirtable(filter: { table: { eq: "Customers" } }) {
+    #   nodes {
+    #     id
+    #     data {
+    #       quote
+    #       title
+    #       name
+    #       image {
+    #         localFiles {
+    #           childImageSharp {
+    #             gatsbyImageData(
+    #               width: 150
+    #               height: 150
+    #               placeholder: TRACED_SVG
+    #             )
+    #           }
+    #         }
+    #       }
+    #     }
+    #   }
+    # }
   }
 `
 
