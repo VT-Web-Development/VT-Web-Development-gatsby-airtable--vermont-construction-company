@@ -1,9 +1,17 @@
 {
   "Main": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+        "label": "title",
+        "placeholder": "title"
+      }
+    },
     "headline": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
         "label": "Headline",
         "placeholder": "Headline"
       }
@@ -11,9 +19,17 @@
     "description": {
       "type": "StructuredText",
       "config": {
-        "multi": "preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+        "multi": "preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
         "label": "Description",
         "placeholder": "Description"
+      }
+    },
+    "request_message": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Request message",
+        "placeholder": "Request message"
       }
     }
   }

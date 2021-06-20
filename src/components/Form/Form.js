@@ -1,10 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useStaticQuery } from 'gatsby'
+import { graphql } from 'gatsby'
 import { MDBBtn, MDBIcon, MDBInput } from 'mdbreact'
 
+import Title from '../Title'
+
 const Form = () => {
+  const {
+    contact: { edges: contactUS },
+  } = useStaticQuery(query)
+
   return (
-    <>
+    <Wrapper>
+      {contactUS &&
+        contactUS.map((contact, index) => (
+          <Title title={contact.node.data.title.text} key={index} />
+        ))}
+
       <form
         className="contact-form"
         name="contact"
@@ -50,24 +63,54 @@ const Form = () => {
             icon="pencil-alt"
           />
         </div>
-        <Center>
+        <div className="center">
           <MDBBtn outline color="secondary">
-            Send
+            Get In Touch
             <MDBIcon far icon="paper-plane" className="ml-1" />
           </MDBBtn>
-        </Center>
+        </div>
       </form>
-    </>
+    </Wrapper>
   )
 }
 
-const Center = styled.div`
-  text-align: center;
+const Wrapper = styled.div`
+  .center {
+    text-align: center !important;
+  }
 
   .btn-secondary {
     color: var(--clr-primary-1) !important;
     border: 2px solid var(--clr-primary-1) !important;
   }
+
+  h2 {
+    color: var(--clr-white);
+  }
 `
 
+const query = graphql`
+  {
+    contact: allPrismicContact {
+      edges {
+        node {
+          data {
+            description {
+              text
+            }
+            headline {
+              text
+            }
+            request_message {
+              text
+            }
+            title {
+              text
+            }
+          }
+        }
+      }
+    }
+  }
+`
 export default Form

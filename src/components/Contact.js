@@ -4,12 +4,11 @@ import { useStaticQuery } from 'gatsby'
 import { graphql } from 'gatsby'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
-import Title from './Title'
 import Form from './Form/Form'
 
 const Contact = () => {
   const {
-    about: { edges: aboutUS },
+    contact: { edges: contactUS },
   } = useStaticQuery(query)
 
   return (
@@ -21,14 +20,21 @@ const Contact = () => {
               <Form />
             </MDBCol>
             <MDBCol md="6" className="p-5">
-              {aboutUS &&
-                aboutUS.map((about, index) => {
-                  const { title, description } = about.node.data.body[0].primary
+              {contactUS &&
+                contactUS.map((contact, index) => {
+                  console.log(contact)
+                  const {
+                    headline,
+                    request_message,
+                    description,
+                  } = contact.node.data
+                  console.log(headline)
 
                   return (
                     <article key={index}>
-                      <Title title={title.text} />
+                      <h3>{headline.text}</h3>
                       <p>{description.text}</p>
+                      <h4>{request_message.text}</h4>
                     </article>
                   )
                 })}
@@ -47,6 +53,12 @@ const Wrapper = styled.section`
   h2 {
     padding: 0 0 2rem 0;
   }
+
+  article p,
+  article h3,
+  article h4 {
+    padding: 1rem 0 1rem 0;
+  }
 `
 
 const BackgroundColor = styled.section`
@@ -57,51 +69,20 @@ const BackgroundColor = styled.section`
   }
 `
 
-const FlexLists = styled.article`
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  grid-gap: 1rem;
-
-  .info > h3 {
-    color: var(--clr-primary-1);
-  }
-
-  .info > h3 + p {
-    color: var(--clr-white);
-  }
-`
-
 const query = graphql`
   {
-    about: allPrismicAbout {
+    contact: allPrismicContact {
       edges {
         node {
           data {
-            body {
-              ... on PrismicAboutDataBodyAlternateGrid {
-                id
-                items {
-                  description {
-                    text
-                  }
-                  optional_icon {
-                    alt
-                    gatsbyImageData
-                  }
-                  title {
-                    text
-                  }
-                  number
-                }
-                primary {
-                  description {
-                    text
-                  }
-                  title {
-                    text
-                  }
-                }
-              }
+            description {
+              text
+            }
+            headline {
+              text
+            }
+            request_message {
+              text
             }
           }
         }
