@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
@@ -8,28 +8,43 @@ import { useLightbox } from 'simple-react-lightbox'
 import Title from './Title'
 import SearchButtons from './SearchButtons'
 
-const Projects = ({ projects: data = [], title, page }) => {
-  const [projects, setProjects] = React.useState(data)
+const Projects = ({ projects: data, title, page }) => {
+  const [projects, setProjects] = useState(data)
   const { openLightbox, closeLightbox } = useLightbox()
 
-  const setBackToAll = () => {
-    setProjects(data)
-  }
+  // const setBackToAll = () => {
+  //   setProjects(data)
+  // }
 
+  const projectTitle = projects.map(projectData => {
+    console.log(projectData.node.data.title)
+    return projectData.node.data.title.text
+  })
+
+  console.log(projectTitle)
+  const projectDatas = projects.map(projectData => {
+    return projectData.node.data.body[0].items.map(item => {
+      console.log(item)
+      return item
+    })
+  })
+
+  console.log(projectDatas)
   return (
     <Wrapper className="section">
-      <Title title={title || 'projects'} />
-      {page && (
+      <Title title={projectTitle || 'projects'} />
+      {/* {page && (
         <SearchButtons
           projects={data}
           setProjects={setProjects}
           setBackToAll={setBackToAll}
         />
-      )}
+      )} */}
       <SRLWrapper>
         <div className="section-center">
-          {projects.map(project =>
-            project.node.data.body[0].items.map(item => {
+          {projectDatas.map(projectData =>
+            projectData.map(item => {
+              console.log(item)
               const { alt } = item.image
               const image = item.image.gatsbyImageData
 

@@ -5,8 +5,9 @@ import { Layout, Projects } from '../components'
 
 const ProjectsPage = ({ data }) => {
   const {
-    allAirtable: { nodes: projects },
+    projects: { edges: projects },
   } = data
+
   return (
     <Wrapper>
       <Layout>
@@ -18,6 +19,38 @@ const ProjectsPage = ({ data }) => {
 
 export const query = graphql`
   {
+    projects: allPrismicProjects {
+      edges {
+        node {
+          data {
+            body {
+              ... on PrismicProjectsDataBodyImageGallery {
+                id
+                items {
+                  image {
+                    alt
+                    gatsbyImageData
+                    url
+                  }
+                  name {
+                    text
+                  }
+                  number
+                  type {
+                    text
+                  }
+                  date(formatString: "YYYY-MM-DD")
+                }
+              }
+            }
+            title {
+              text
+            }
+          }
+        }
+      }
+    }
+
     allAirtable(
       filter: { table: { eq: "Projects" } }
       sort: { fields: data___date, order: DESC }

@@ -22,13 +22,11 @@ const Contact = () => {
             <MDBCol md="6" className="p-5">
               {contactUS &&
                 contactUS.map((contact, index) => {
-                  console.log(contact)
                   const {
                     headline,
                     request_message,
                     description,
                   } = contact.node.data
-                  console.log(headline)
 
                   return (
                     <article key={index}>

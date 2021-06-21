@@ -3,42 +3,69 @@ import styled from 'styled-components'
 
 const SearchButtons = ({ projects, setProjects, setBackToAll }) => {
   const [index, setIndex] = React.useState(0)
-  const types = [
-    'all',
+
+  console.log(projects)
+  const projectDatas = projects.map(projectData => {
+    console.log(projectData)
+    return projectData.node.data.body[0].items
+  })
+  console.log(projectDatas)
+
+  const tempTypes = [
     ...new Set(
-      projects.map(project => {
-        return project.data.type
+      projectDatas.map(projectData => {
+        console.log(projectData)
+
+        return projectData.map(item => {
+          console.log(item.type.text)
+          return item.type.text
+        })
       })
     ),
   ]
+
+  const types = tempTypes.map(item => {
+    console.log(item)
+    return ['all', ...item]
+  })
+  console.log(types)
 
   const showProjects = (type, typeIndex) => {
     setIndex(typeIndex)
     if (type === 'all') {
       setBackToAll()
     } else {
-      const tempProjects = projects.filter(
-        project => project.data.type === type
-      )
+      const tempProjects = projectDatas.map(projectData => {
+        return projectData.map(item => {
+          return item.type.text === type
+        })
+      })
       setProjects(tempProjects)
+      console.log(tempProjects)
     }
   }
+
   return (
     <Wrapper>
-      {types.map((type, typeIndex) => {
-        return (
-          <button
-            key={typeIndex}
-            className={index === typeIndex ? 'active' : undefined}
-            onClick={() => showProjects(type, typeIndex)}
-          >
-            {type}
-          </button>
-        )
+      {types.map(item => {
+        console.log(item)
+        return item.map((type, typeIndex) => {
+          console.log(type)
+          return (
+            <button
+              key={typeIndex}
+              className={index === typeIndex ? 'active' : undefined}
+              onClick={() => showProjects(type, typeIndex)}
+            >
+              {type}
+            </button>
+          )
+        })
       })}
     </Wrapper>
   )
 }
+
 const Wrapper = styled.section`
   display: flex;
   margin-bottom: 0;

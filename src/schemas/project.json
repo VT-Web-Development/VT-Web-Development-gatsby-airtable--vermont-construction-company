@@ -46,6 +46,29 @@
                   "label": "image"
                 }
               },
+              "type": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "type",
+                  "placeholder": "type"
+                }
+              },
+              "name": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "name",
+                  "placeholder": "name"
+                }
+              },
+              "date": {
+                "type": "Date",
+                "config": {
+                  "label": "date",
+                  "placeholder": "date"
+                }
+              },
               "number": {
                 "type": "Number",
                 "config": {

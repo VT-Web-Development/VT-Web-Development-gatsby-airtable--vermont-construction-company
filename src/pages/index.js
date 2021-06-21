@@ -15,10 +15,10 @@ import Seo from '../components/SEO'
 const HomePage = ({ data }) => {
   const {
     projects: { edges: projects },
-    // allAirtable: { nodes: projects },
+    allAirtable: { nodes: airTableprojects },
     customers: { edges: customers },
   } = data
-
+  console.log(airTableprojects)
   return (
     <Layout>
       <Hero />
@@ -47,6 +47,14 @@ export const query = graphql`
                     gatsbyImageData
                     url
                   }
+                  name {
+                    text
+                  }
+                  number
+                  type {
+                    text
+                  }
+                  date(formatString: "YYYY-MM-DD")
                 }
               }
             }
