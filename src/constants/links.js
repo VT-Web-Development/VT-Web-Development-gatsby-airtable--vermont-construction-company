@@ -13,56 +13,44 @@ export const links = {
     //! Using function to lazy evaluate options.
     getDropdownOptions: () => [
       {
-        label: `Terminal`,
+        label: `New Build Homes`,
         url: DUMMY_URL,
       },
       {
-        label: `Connect`,
+        label: `House Extensions`,
         url: DUMMY_URL,
       },
       {
-        label: `Billing`,
+        label: `House Renovation`,
+        url: DUMMY_URL,
+      },
+      {
+        label: `Property Development`,
+        url: DUMMY_URL,
+      },
+      {
+        label: `Landscaping & External Works`,
+        url: DUMMY_URL,
+      },
+      {
+        label: `Commercial Construction`,
         url: DUMMY_URL,
       },
     ],
   },
   about: {
     label: `About`,
-    url: DUMMY_URL,
-    isDropdown: true,
-    getDropdownOptions: () => [
-      {
-        label: 'documentation',
-        url: DUMMY_URL,
-      },
-      {
-        label: 'libraries',
-        url: DUMMY_URL,
-      },
-      {
-        label: 'plugins',
-        url: DUMMY_URL,
-      },
-    ],
+    url: '/aboutUs',
+    isDropdown: false,
   },
   projects: {
     label: `Projects`,
-    url: DUMMY_URL,
-    isDropdown: true,
-    getDropdownOptions: () => [
-      {
-        label: 'jobs',
-        url: DUMMY_URL,
-      },
-      {
-        label: 'customers',
-        url: DUMMY_URL,
-      },
-    ],
+    url: '/projects',
+    isDropdown: false,
   },
   getAQuote: {
     label: `Get A Quote`,
-    url: '/contact',
+    url: '/get-a-quote',
     isDropdown: false,
 
     // Pass an extra property props with classes

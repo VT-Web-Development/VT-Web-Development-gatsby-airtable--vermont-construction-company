@@ -27,6 +27,12 @@ Object.defineProperty(exports, "Projects", {
     return _Projects["default"];
   }
 });
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function get() {
+    return _Form["default"];
+  }
+});
 Object.defineProperty(exports, "About", {
   enumerable: true,
   get: function get() {
@@ -45,10 +51,10 @@ Object.defineProperty(exports, "Slider", {
     return _Slider["default"];
   }
 });
-Object.defineProperty(exports, "Contact", {
+Object.defineProperty(exports, "GetAQuote", {
   enumerable: true,
   get: function get() {
-    return _Contact["default"];
+    return _GetAQuote["default"];
   }
 });
 Object.defineProperty(exports, "GridProjects", {
@@ -66,13 +72,15 @@ var _Services = _interopRequireDefault(require("./Services"));
 
 var _Projects = _interopRequireDefault(require("./Projects"));
 
+var _Form = _interopRequireDefault(require("./Form/Form"));
+
 var _About = _interopRequireDefault(require("./About"));
 
 var _Survey = _interopRequireDefault(require("./Survey"));
 
 var _Slider = _interopRequireDefault(require("./Slider"));
 
-var _Contact = _interopRequireDefault(require("./Contact"));
+var _GetAQuote = _interopRequireDefault(require("./GetAQuote"));
 
 var _GridProjects = _interopRequireDefault(require("./GridProjects"));
 

@@ -5,7 +5,10 @@ const Footer = () => {
     <Wrapper>
       <p>
         &copy; {new Date().getFullYear()} Vermont Construction Company, All
-        rights reserved. Built with Gatsby
+        rights reserved -- Web design & Web development by{' '}
+        <a href="https://www.vtwebdevelopment.com" target="blank">
+          VT Web Development
+        </a>
       </p>
     </Wrapper>
   )

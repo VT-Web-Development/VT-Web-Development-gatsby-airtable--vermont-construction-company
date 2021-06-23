@@ -1,0 +1,89 @@
+{
+  "Main": {
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {},
+        "choices": {
+          "alternate_grid": {
+            "type": "Slice",
+            "fieldset": "AlternateGrid",
+            "description": "A predesigned Text Grid with Image left or right",
+            "icon": "wrap_text",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+                  "label": "title"
+                }
+              },
+              "sub_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, strong, em, hyperlink, image, embed, list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "sub title",
+                  "placeholder": "sub title"
+                }
+              },
+              "optional_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Optional image"
+                }
+              },
+              "image_side": {
+                "type": "Select",
+                "config": {
+                  "options": ["left", "right"],
+                  "default_value": "left",
+                  "label": "Image side"
+                }
+              }
+            },
+            "repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "name": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+                  "label": "name",
+                  "placeholder": "name"
+                }
+              },
+              "position": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading4",
+                  "label": "position",
+                  "placeholder": "position"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "description",
+                  "placeholder": "description"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

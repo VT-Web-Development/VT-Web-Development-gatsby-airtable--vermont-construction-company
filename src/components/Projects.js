@@ -17,19 +17,19 @@ const Projects = ({ projects: data, title, page }) => {
   // }
 
   const projectTitle = projects.map(projectData => {
-    console.log(projectData.node.data.title)
+    // console.log(projectData.node.data.title)
     return projectData.node.data.title.text
   })
 
-  console.log(projectTitle)
+  // console.log(projectTitle)
   const projectDatas = projects.map(projectData => {
     return projectData.node.data.body[0].items.map(item => {
-      console.log(item)
+      // console.log(item)
       return item
     })
   })
 
-  console.log(projectDatas)
+  // console.log(projectDatas)
   return (
     <Wrapper className="section">
       <Title title={projectTitle || 'projects'} />
@@ -44,7 +44,9 @@ const Projects = ({ projects: data, title, page }) => {
         <div className="section-center">
           {projectDatas.map(projectData =>
             projectData.map(item => {
-              console.log(item)
+              {
+                /* console.log(item) */
+              }
               const { alt } = item.image
               const image = item.image.gatsbyImageData
 
@@ -90,7 +92,7 @@ const Wrapper = styled.section`
   background: var(--clr-grey-10);
   .section-center {
     margin-top: 4rem;
-    max-width: var(--max-width);
+    /* max-width: var(--max-width); */
     display: grid;
     /* gap: 2rem; */
     /* safari workaround */

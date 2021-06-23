@@ -2,10 +2,11 @@ import Layout from './Layout'
 import Hero from './Hero'
 import Services from './Services'
 import Projects from './Projects'
+import Form from './Form/Form'
 import About from './About'
 import Survey from './Survey'
 import Slider from './Slider'
-import Contact from './Contact'
+import GetAQuote from './GetAQuote'
 import GridProjects from './GridProjects'
 
 export {
@@ -14,8 +15,9 @@ export {
   Services,
   About,
   Projects,
+  Form,
   Survey,
   Slider,
-  Contact,
+  GetAQuote,
   GridProjects,
 }

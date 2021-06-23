@@ -6,7 +6,7 @@ import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import Form from './Form/Form'
 
-const Contact = () => {
+const GetAQuote = () => {
   const {
     contact: { edges: contactUS },
   } = useStaticQuery(query)
@@ -89,4 +89,4 @@ const query = graphql`
   }
 `
 
-export default Contact
+export default GetAQuote

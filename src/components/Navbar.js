@@ -232,8 +232,8 @@ const Dropdown = styled.div`
       border-radius: var(--radius);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem 2rem;
-      grid-gap: 1rem 4rem;
+      gap: 1rem 1rem;
+      grid-gap: 1rem 1rem;
       visibility: visible;
     }
   }

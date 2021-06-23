@@ -49,6 +49,7 @@ Variables
   --radius: 0.25rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --bg-transparent: rgba(238,247,243, 0.5);
   --max-width: 1170px;
   --fixed-width: 620px;
 }
@@ -120,6 +121,14 @@ h4 {
 p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-3);
+}
+
+a {
+  color: var(--clr-primary-1);
+}
+
+a:hover {
+  color: var(--clr-primary-2);
 }
 
 button {
@@ -250,7 +259,7 @@ button.call-to-action:active {
 button.call-to-action a {
   text-transform: capitalize;
   letter-spacing: 5px;
-  color: var(--clr-primary-3);
+  color: var(--clr-primary-3) !important;
   font-size: 1rem;
   cursor: pointer;
   transition: var(--transition);

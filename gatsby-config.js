@@ -67,6 +67,7 @@ module.exports = {
           contact: require('./src/schemas/contact.json'),
           services: require('./src/schemas/services.json'),
           testimonails: require('./src/schemas/testimonials.json'),
+          about_us_page: require('./src/schemas/about-us-page.json'),
         },
         // Provide a default set of Imgix image transformations applied to
         // Imgix-backed gatsby-image fields. These options will override the

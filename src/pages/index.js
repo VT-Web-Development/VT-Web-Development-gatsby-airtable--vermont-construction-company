@@ -7,7 +7,7 @@ import {
   About,
   Projects,
   Slider,
-  Contact,
+  GetAQuote,
   GridProjects,
 } from '../components'
 import Seo from '../components/SEO'
@@ -27,7 +27,7 @@ const HomePage = ({ data }) => {
       <Projects projects={projects} title="Our Projects" />
       {/* <GridProjects projects={projects} title="Our Projects" /> */}
       <Slider customers={customers} />
-      <Contact />
+      <GetAQuote />
     </Layout>
   )
 }
