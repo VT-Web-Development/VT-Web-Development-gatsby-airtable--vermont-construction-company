@@ -9,13 +9,10 @@ import Title from './Title'
 
 const Slider = ({ customers = [] }) => {
   const [index, setIndex] = useState(0)
-  console.log(customers)
 
   const customerSlide = customers.map(item => {
-    console.log(item.node.data.body[0].items.length)
     return item.node.data.body[0].items
   })
-  console.log(customerSlide)
 
   const nextSlide = () => {
     setIndex(oldIndex => {
@@ -61,10 +58,8 @@ const Slider = ({ customers = [] }) => {
 
         <MDBRow>
           {customers.map(item => {
-            console.log(item.node.data.body[0])
             return item.node.data.body[0].items.map(
               (customer, customerIndex) => {
-                console.log(customer)
                 const { image1, name1, title1, quote1 } = customer
                 const { alt } = image1
                 const customerImage = getImage(image1.gatsbyImageData)

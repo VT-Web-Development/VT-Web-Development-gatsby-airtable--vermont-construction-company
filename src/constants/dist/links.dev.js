@@ -4,16 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.linkKeys = exports.links = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _fa = require("react-icons/fa");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
+//! Using dummy URL.
 var DUMMY_URL = "/services/payments";
 var links = {
-  services: {
+  1: {
     label: "Services",
     url: DUMMY_URL,
     isDropdown: true,
@@ -40,17 +34,17 @@ var links = {
       }];
     }
   },
-  about: {
+  2: {
     label: "About",
-    url: '/aboutUs',
+    url: '/about-us',
     isDropdown: false
   },
-  projects: {
+  3: {
     label: "Projects",
     url: '/projects',
     isDropdown: false
   },
-  getAQuote: {
+  4: {
     label: "Get A Quote",
     url: '/get-a-quote',
     isDropdown: false,

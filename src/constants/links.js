@@ -1,11 +1,8 @@
-import React from 'react'
-import { FaCcStripe, FaCreditCard, FaAlipay } from 'react-icons/fa'
-
 //! Using dummy URL.
 const DUMMY_URL = `/services/payments`
 
 export const links = {
-  services: {
+  1: {
     label: `Services`,
     url: DUMMY_URL,
     isDropdown: true,
@@ -38,17 +35,17 @@ export const links = {
       },
     ],
   },
-  about: {
+  2: {
     label: `About`,
-    url: '/aboutUs',
+    url: '/about-us',
     isDropdown: false,
   },
-  projects: {
+  3: {
     label: `Projects`,
     url: '/projects',
     isDropdown: false,
   },
-  getAQuote: {
+  4: {
     label: `Get A Quote`,
     url: '/get-a-quote',
     isDropdown: false,

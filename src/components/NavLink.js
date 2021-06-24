@@ -29,7 +29,6 @@ const NavLink = () => {
         }
 
         console.log(config)
-        console.log(navLink.getAQuote)
 
         return (
           <NavLinkWrapper
@@ -42,11 +41,12 @@ const NavLink = () => {
               data-bs-toggle={currLink?.isDropdown ? 'dropdown' : 'none'}
               type="button"
             >
-              {currLink.label !== 'Get A Quote' ? (
+              {/* If isDropdown === fales return url */}
+              {currLink.isDropdown !== false ? (
                 currLink?.label
               ) : (
                 <>
-                  <Link to={navLink.getAQuote.url}>{currLink?.label}</Link>
+                  <Link to={currLink.url}>{currLink?.label}</Link>
                 </>
               )}
             </button>
@@ -86,6 +86,10 @@ const NavLinkWrapper = styled.li`
     text-transform: capitalize;
     position: relative;
     cursor: pointer;
+
+    a {
+      color: var(--clr-white);
+    }
   }
 `
 
