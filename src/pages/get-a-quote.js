@@ -1,21 +1,52 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+import { convertToBgImage } from 'gbimage-bridge'
+import BackgroundImage from 'gatsby-background-image'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
-import { Layout, Form, GetAQuote } from '../components'
+import { Layout, GetAQuote } from '../components'
 import Title from '../components/Title'
 
-const getAQuote = () => {
+const getAQuote = ({ data }) => {
+  const {
+    quote: { edges: quote },
+  } = data
+
+  const title = quote[0].node.data.title.text
+  const backgroundImage = quote[0].node.data.image.gatsbyImageData
+  const backgroundImageAlt = quote[0].node.data.image.alt
+
+  const image = getImage(backgroundImage)
+
+  // Use like this:
+  const bgImage = convertToBgImage(image)
   return (
     <Wrapper>
       <Layout>
-        <MDBContainer>
-          <MDBRow>
-            <MDBCol md="12">
-              <Title title="Request A Quote" />
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+        <BackgroundImage
+          Tag="section"
+          // Spread bgImage into BackgroundImage:
+          {...bgImage}
+          preserveStackingContext
+          className="header-background-image"
+        >
+          <MDBContainer fluid>
+            <MDBRow>
+              <MDBCol md="6" className="offset-md-3">
+                <article className="header-title">
+                  <Title title={title} />
+                </article>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+          <GatsbyImage
+            image={image}
+            alt={backgroundImageAlt}
+            className="background-image"
+          />
+        </BackgroundImage>
 
         <MDBContainer fluid className="contact-form">
           <GetAQuote />
@@ -26,7 +57,31 @@ const getAQuote = () => {
 }
 
 const Wrapper = styled.main`
-  min-height: 100vh;
+  .header-background-image {
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .background-image {
+    position: relative;
+    display: none;
+  }
+
+  article.header-title {
+    background: var(--bg-transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  article.header-title h3 {
+    letter-spacing: 2px;
+  }
 
   section {
     padding-top: 0 !important;
@@ -38,7 +93,27 @@ const Wrapper = styled.main`
   }
 
   .contact-form {
-    padding: 2rem 0 0 0;
+    padding: 0;
+  }
+`
+
+export const query = graphql`
+  {
+    quote: allPrismicGetAQuote {
+      edges {
+        node {
+          data {
+            image {
+              alt
+              gatsbyImageData
+            }
+            title {
+              text
+            }
+          }
+        }
+      }
+    }
   }
 `
 

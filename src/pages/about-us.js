@@ -51,6 +51,7 @@ const AboutUsPage = ({ data }) => {
             className="background-image"
           />
         </BackgroundImage>
+
         <MDBContainer id="profile">
           <section id="add-space">
             <MDBRow>
