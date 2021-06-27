@@ -66,10 +66,11 @@ Global Styles
   padding: 0;
   box-sizing: border-box;
 }
-
+${'' /* 
 html.js-focus-visible {
   display: contents;
-}
+  display: flex;
+} */}
 
 @media (max-width: 200px) {
   html.js-focus-visible {

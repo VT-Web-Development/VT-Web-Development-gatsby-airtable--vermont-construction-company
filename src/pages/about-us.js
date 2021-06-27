@@ -13,7 +13,7 @@ const AboutUsPage = ({ data }) => {
   const {
     aboutUs: { edges: aboutUs },
   } = data
-  console.log(aboutUs[0])
+
   const title = aboutUs[0].node.data.body[0].primary.title.text
   const subTitle = aboutUs[0].node.data.body[0].primary.sub_title.text
   const backgroundImage =
@@ -29,7 +29,7 @@ const AboutUsPage = ({ data }) => {
     <Wrapper>
       <Layout>
         <BackgroundImage
-          Tag="section"
+          Tag="header"
           // Spread bgImage into BackgroundImage:
           {...bgImage}
           preserveStackingContext
@@ -62,7 +62,6 @@ const AboutUsPage = ({ data }) => {
                 const profileIName = item.name.text
                 const profilePosition = item.position.text
 
-                console.log(item)
                 return (
                   <section className="profile">
                     <MDBCol md="6" key={index}>
@@ -89,9 +88,11 @@ const AboutUsPage = ({ data }) => {
           </section>
         </MDBContainer>
 
-        <MDBContainer fluid className="contact-form">
-          <GetAQuote />
-        </MDBContainer>
+        <section>
+          <MDBContainer fluid className="contact-form">
+            <GetAQuote />
+          </MDBContainer>
+        </section>
       </Layout>
     </Wrapper>
   )

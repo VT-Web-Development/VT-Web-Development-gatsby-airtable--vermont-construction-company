@@ -75,6 +75,10 @@ const NavLinkWrapper = styled.li`
   /* padding: 1rem 0; */
   position: relative;
 
+  li a {
+    transition: none;
+  }
+
   button {
     color: var(--clr-white);
     border: transparent;

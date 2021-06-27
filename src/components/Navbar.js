@@ -63,6 +63,10 @@ const Wrapper = styled.nav`
 
   .nav-wrap {
     display: flex;
+
+    @media (max-width: 800px) {
+      display: block;
+    }
   }
 
   .nav-center {
@@ -86,6 +90,10 @@ const Wrapper = styled.nav`
     justify-content: flex-end;
     align-items: center;
     padding: 20px 30px 20px 30px;
+
+    @media (max-width: 800px) {
+      padding: 0;
+    }
   }
 
   .nav-header {
@@ -197,7 +205,7 @@ const Dropdown = styled.div`
 
     .dropdown-menu {
       position: absolute;
-      top: 4rem;
+      top: 2.5rem;
       left: 50%;
       transform: translateX(-50%);
       visibility: hidden;
@@ -224,7 +232,7 @@ const Dropdown = styled.div`
 
     &:hover .dropdown-menu {
       position: absolute;
-      top: 4rem;
+      top: 2.5rem;
       left: 50%;
       transform: translateX(-50%);
       padding: 2rem;

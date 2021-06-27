@@ -8,8 +8,6 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  MDBCardImage,
-  MDBView,
 } from 'mdbreact'
 import { Link, useStaticQuery } from 'gatsby'
 import { graphql } from 'gatsby'
@@ -22,6 +20,7 @@ const Services = () => {
     services: { edges: services },
   } = useStaticQuery(query)
 
+  console.log(services)
   return (
     <Wrapper>
       <MDBContainer
@@ -39,40 +38,40 @@ const Services = () => {
 
         <MDBRow>
           {services &&
-            services.map(service =>
-              service.node.data.body[0].items.map(serviceItem => {
-                const { title, description } = serviceItem
-                const { alt } = serviceItem.image
-                {
-                  /* const image = serviceItem.image.url */
-                }
-                const image = serviceItem.image.gatsbyImageData
+            services.map(service => {
+              console.log(service)
+              const { title, description } = service.node.data
+              const { slug } = service.node
+              const { alt } = service.node.data.image
+              const image = service.node.data.image.gatsbyImageData
+              console.log(slug)
 
-                return (
-                  <MDBCol
-                    md="4"
-                    key={alt}
-                    className="mb-4 d-flex align-items-stretch hover-overlay ripple shadow-1-strong rounded"
-                  >
-                    <MDBCard>
-                      {/* <MDBView hover zoom> */}
-                      <GatsbyImage
-                        image={getImage(image)}
-                        alt={alt}
-                        fluid="true"
-                      />
-                      {/* <MDBCardImage src={image} fluid="true" alt={alt} /> */}
-                      {/* </MDBView> */}
-
-                      <MDBCardBody>
-                        <MDBCardTitle>{title.text}</MDBCardTitle>
-                        <MDBCardText>{description.text}</MDBCardText>
-                      </MDBCardBody>
-                    </MDBCard>
-                  </MDBCol>
-                )
-              })
-            )}
+              return (
+                <MDBCol
+                  md="4"
+                  key={alt}
+                  className="mb-4 d-flex align-items-stretch hover-overlay ripple shadow-1-strong rounded"
+                >
+                  <article className="d-flex">
+                    <nav>
+                      <Link to={`/services/${slug}`}>
+                        <MDBCard className="h-100" key={title.text}>
+                          <GatsbyImage
+                            image={getImage(image)}
+                            alt={alt}
+                            fluid="true"
+                          />
+                          <MDBCardBody>
+                            <MDBCardTitle>{title.text}</MDBCardTitle>
+                            <MDBCardText>{description.text}</MDBCardText>
+                          </MDBCardBody>
+                        </MDBCard>
+                      </Link>
+                    </nav>
+                  </article>
+                </MDBCol>
+              )
+            })}
         </MDBRow>
       </MDBContainer>
     </Wrapper>
@@ -92,6 +91,11 @@ const Wrapper = styled.section`
     background: var(--clr-grey-10);
     box-shadow: none;
   }
+
+  .card-column {
+    margin-bottom: 2rem;
+    display: flex;
+  }
 `
 
 const query = graphql`
@@ -100,26 +104,19 @@ const query = graphql`
       edges {
         node {
           data {
-            body {
-              ... on PrismicServicesDataBodyImagesSlider {
-                id
-                items {
-                  description {
-                    text
-                  }
-                  image {
-                    alt
-                    gatsbyImageData
-                    url
-                  }
-                  number
-                  title {
-                    text
-                  }
-                }
-              }
+            number
+            description {
+              text
+            }
+            image {
+              alt
+              gatsbyImageData
+            }
+            title {
+              text
             }
           }
+          slug: uid
         }
       }
     }
