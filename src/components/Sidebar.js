@@ -1,14 +1,12 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { MdClose } from 'react-icons/md'
-import { Link } from 'gatsby'
-import clsx from 'clsx'
 
 import { GatsbyContext } from '../context/context'
 import NavLink from './NavLink'
 
 const Sidebar = () => {
-  const { navLink, linkKey, hideSidebar } = useContext(GatsbyContext)
+  const { navLink, hideSidebar } = useContext(GatsbyContext)
   console.log(navLink)
 
   return (

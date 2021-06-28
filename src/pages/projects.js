@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import { Layout, Projects, Form } from '../components'
+import ScrollUp from '../components/ScrollUp'
 
 const ProjectsPage = ({ data }) => {
   const {
@@ -28,6 +29,8 @@ const ProjectsPage = ({ data }) => {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
+
+        <ScrollUp />
       </Layout>
     </Wrapper>
   )

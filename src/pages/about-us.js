@@ -8,6 +8,7 @@ import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import { GetAQuote, Layout } from '../components'
 import Title from '../components/Title'
+import ScrollUp from '../components/ScrollUp'
 
 const AboutUsPage = ({ data }) => {
   const {
@@ -93,6 +94,8 @@ const AboutUsPage = ({ data }) => {
             <GetAQuote />
           </MDBContainer>
         </section>
+
+        <ScrollUp />
       </Layout>
     </Wrapper>
   )

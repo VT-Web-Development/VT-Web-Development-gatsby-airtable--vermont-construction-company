@@ -11,6 +11,7 @@ import {
   GridProjects,
 } from '../components'
 import Seo from '../components/SEO'
+import ScrollUp from '../components/ScrollUp'
 
 const HomePage = ({ data }) => {
   const {
@@ -28,6 +29,7 @@ const HomePage = ({ data }) => {
       {/* <GridProjects projects={projects} title="Our Projects" /> */}
       <Slider customers={customers} />
       <GetAQuote />
+      <ScrollUp />
     </Layout>
   )
 }

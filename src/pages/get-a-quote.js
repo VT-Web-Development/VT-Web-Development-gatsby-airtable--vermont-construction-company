@@ -8,6 +8,7 @@ import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import { Layout, GetAQuote } from '../components'
 import Title from '../components/Title'
+import ScrollUp from '../components/ScrollUp'
 
 const getAQuote = ({ data }) => {
   const {
@@ -51,6 +52,8 @@ const getAQuote = ({ data }) => {
         <MDBContainer fluid className="contact-form">
           <GetAQuote />
         </MDBContainer>
+
+        <ScrollUp />
       </Layout>
     </Wrapper>
   )
