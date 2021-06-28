@@ -11,7 +11,7 @@ module.exports = {
     description: "Gatsby Airtable Example. Built using Airtable, Algolia Search, Gatsby Background Image plugin and  React Context API. Containts two sliders, real-time Airtable updates and submenus. Styled using Styled-Components. ",
     author: "Krittiya Clark",
     titleTemplate: "%s | Vermont Construction Company",
-    url: "https://vermontconstructioncompany.net",
+    siteUrl: "https://www.vtwebdevelopment.com",
     image: "mainBcg.png",
     twitterUsername: "@vtwebdev"
   },

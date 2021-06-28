@@ -1,23 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FaArrowCircleUp } from 'react-icons/fa'
+const windowGlobal = typeof window !== 'undefined' && window
+const getPosition = () => (windowGlobal ? window.pageYOffset : undefined)
 
 const ScrollUp = () => {
-  const [showScroll, setShowScroll] = useState(false)
+  const [showScroll, setShowScroll] = useState(getPosition)
 
-  const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400) {
-      setShowScroll(true)
-    } else if (showScroll && window.pageYOffset <= 400) {
-      setShowScroll(false)
+  useEffect(() => {
+    if (!windowGlobal) {
+      return false
     }
-  }
+
+    const handleScroll = () => {
+      setShowScroll(getPosition())
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+  // const checkScrollTop = () => {
+  //   if (!showScroll && window.pageYOffset > 400) {
+  //     setShowScroll(true)
+  //   } else if (showScroll && window.pageYOffset <= 400) {
+  //     setShowScroll(false)
+  //   }
+  // }
 
-  window.addEventListener('scroll', checkScrollTop)
+  // const scrollTop = () => {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' })
+  // }
+
+  // Check if window is defined (so if in the browser or in node.js).
 
   return (
     <Wrapper>
