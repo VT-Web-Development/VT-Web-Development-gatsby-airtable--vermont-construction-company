@@ -9,8 +9,8 @@ import { useLocation } from '@reach/router'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import Layout from '../components/Layout'
-import Title from '../components/Title'
 import { GetAQuote } from '../components'
+import PageHeaderTitle from '../components/PageHeaderTitle'
 
 const ServicesTemplete = ({ data }) => {
   const { title, description } = data.prismicServices.data
@@ -33,9 +33,9 @@ const ServicesTemplete = ({ data }) => {
         >
           <MDBContainer>
             <MDBRow>
-              <MDBCol md="6" className="offset-md-3">
+              <MDBCol md="8" className="offset-md-2">
                 <article className="header-title">
-                  <Title title={title.text} />
+                  <PageHeaderTitle pageHeaderTitle={title.text} />
                 </article>
               </MDBCol>
             </MDBRow>

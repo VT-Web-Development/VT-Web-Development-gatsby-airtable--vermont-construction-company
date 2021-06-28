@@ -7,8 +7,8 @@ import BackgroundImage from 'gatsby-background-image'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import { Layout, GetAQuote } from '../components'
-import Title from '../components/Title'
 import ScrollUp from '../components/ScrollUp'
+import PageHeaderTitle from '../components/PageHeaderTitle'
 
 const getAQuote = ({ data }) => {
   const {
@@ -37,7 +37,7 @@ const getAQuote = ({ data }) => {
             <MDBRow>
               <MDBCol md="6" className="offset-md-3">
                 <article className="header-title">
-                  <Title title={title} />
+                  <PageHeaderTitle pageHeaderTitle={title} />
                 </article>
               </MDBCol>
             </MDBRow>

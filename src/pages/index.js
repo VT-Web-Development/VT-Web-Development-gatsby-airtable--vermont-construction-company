@@ -8,7 +8,6 @@ import {
   Projects,
   Slider,
   GetAQuote,
-  GridProjects,
 } from '../components'
 import Seo from '../components/SEO'
 import ScrollUp from '../components/ScrollUp'
@@ -16,17 +15,15 @@ import ScrollUp from '../components/ScrollUp'
 const HomePage = ({ data }) => {
   const {
     projects: { edges: projects },
-    allAirtable: { nodes: airTableprojects },
     customers: { edges: customers },
   } = data
-  console.log(airTableprojects)
+
   return (
     <Layout>
       <Hero />
       <Services />
       <About />
       <Projects projects={projects} title="Our Projects" />
-      {/* <GridProjects projects={projects} title="Our Projects" /> */}
       <Slider customers={customers} />
       <GetAQuote />
       <ScrollUp />
@@ -101,49 +98,6 @@ export const query = graphql`
         }
       }
     }
-
-    allAirtable(
-      filter: { table: { eq: "Projects" } }
-      limit: 4
-      sort: { fields: data___date, order: DESC }
-    ) {
-      nodes {
-        data {
-          date
-          name
-          type
-          image {
-            localFiles {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
-              }
-            }
-          }
-        }
-        id
-      }
-    }
-    # customers: allAirtable(filter: { table: { eq: "Customers" } }) {
-    #   nodes {
-    #     id
-    #     data {
-    #       quote
-    #       title
-    #       name
-    #       image {
-    #         localFiles {
-    #           childImageSharp {
-    #             gatsbyImageData(
-    #               width: 150
-    #               height: 150
-    #               placeholder: TRACED_SVG
-    #             )
-    #           }
-    #         }
-    #       }
-    #     }
-    #   }
-    # }
   }
 `
 

@@ -69,27 +69,6 @@ export const query = graphql`
         }
       }
     }
-
-    allAirtable(
-      filter: { table: { eq: "Projects" } }
-      sort: { fields: data___date, order: DESC }
-    ) {
-      nodes {
-        data {
-          date
-          name
-          type
-          image {
-            localFiles {
-              childImageSharp {
-                gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
-              }
-            }
-          }
-        }
-        id
-      }
-    }
   }
 `
 

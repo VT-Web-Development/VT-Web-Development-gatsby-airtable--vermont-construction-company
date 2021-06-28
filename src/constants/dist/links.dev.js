@@ -4,33 +4,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.linkKeys = exports.links = void 0;
-//! Using dummy URL.
-var DUMMY_URL = "/services/payments";
 var links = {
   1: {
     label: "Services",
-    url: DUMMY_URL,
     isDropdown: true,
     //! Using function to lazy evaluate options.
     getDropdownOptions: function getDropdownOptions() {
       return [{
         label: "New Build Homes",
-        url: DUMMY_URL
+        url: '/services/new-build-homes'
       }, {
         label: "House Extensions",
-        url: DUMMY_URL
+        url: '/services/house-extensions'
       }, {
         label: "House Renovation",
-        url: DUMMY_URL
+        url: '/services/house-renovation'
       }, {
         label: "Property Development",
-        url: DUMMY_URL
+        url: '/services/property-development'
       }, {
         label: "Landscaping & External Works",
-        url: DUMMY_URL
+        url: '/services/landscaping-and-external-works'
       }, {
         label: "Commercial Construction",
-        url: DUMMY_URL
+        url: '/services/commercial-construction'
       }];
     }
   },

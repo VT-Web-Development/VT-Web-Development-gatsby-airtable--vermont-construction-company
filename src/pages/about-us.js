@@ -7,8 +7,8 @@ import styled from 'styled-components'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import { GetAQuote, Layout } from '../components'
-import Title from '../components/Title'
 import ScrollUp from '../components/ScrollUp'
+import PageHeaderTitle from '../components/PageHeaderTitle'
 
 const AboutUsPage = ({ data }) => {
   const {
@@ -40,7 +40,7 @@ const AboutUsPage = ({ data }) => {
             <MDBRow>
               <MDBCol md="6" className="offset-md-3">
                 <article className="header-title">
-                  <Title title={title} />
+                  <PageHeaderTitle pageHeaderTitle={title} />
                   <h3>{subTitle}</h3>
                 </article>
               </MDBCol>

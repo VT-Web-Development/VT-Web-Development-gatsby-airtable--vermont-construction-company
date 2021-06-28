@@ -5,10 +5,10 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { SRLWrapper } from 'simple-react-lightbox'
 import { useLightbox } from 'simple-react-lightbox'
 
+import PageHeaderTitle from './PageHeaderTitle'
 import Title from './Title'
-import SearchButtons from './SearchButtons'
 
-const Projects = ({ projects: data, title, page }) => {
+const Projects = ({ projects: data, page }) => {
   const [projects, setProjects] = useState(data)
   const { openLightbox, closeLightbox } = useLightbox()
 
@@ -32,7 +32,12 @@ const Projects = ({ projects: data, title, page }) => {
   // console.log(projectDatas)
   return (
     <Wrapper className="section">
-      <Title title={projectTitle || 'projects'} />
+      {!page ? (
+        <Title title={projectTitle || 'projects'} />
+      ) : (
+        <PageHeaderTitle pageHeaderTitle={projectTitle || 'projects'} />
+      )}
+
       {/* {page && (
         <SearchButtons
           projects={data}

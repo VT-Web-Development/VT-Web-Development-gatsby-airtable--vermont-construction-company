@@ -8,45 +8,6 @@ import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 import Title from './Title'
 
 const Slider = ({ customers = [] }) => {
-  const [index, setIndex] = useState(0)
-
-  const customerSlide = customers.map(item => {
-    return item.node.data.body[0].items
-  })
-
-  const nextSlide = () => {
-    setIndex(oldIndex => {
-      let index = oldIndex + 1
-      if (index > customerSlide.length - 1) {
-        index = 0
-      }
-      return index
-    })
-  }
-  const prevSlide = () => {
-    setIndex(oldIndex => {
-      let index = oldIndex - 1
-      if (index < 0) {
-        index = customerSlide.length - 1
-      }
-      return index
-    })
-  }
-  useEffect(() => {
-    let slider = setInterval(() => {
-      setIndex(oldIndex => {
-        let index = oldIndex + 1
-        if (index > customerSlide.length - 1) {
-          index = 0
-        }
-        return index
-      })
-    }, 5000)
-    return () => {
-      clearInterval(slider)
-    }
-  }, [index])
-
   return (
     <Wrapper>
       <MDBContainer>
