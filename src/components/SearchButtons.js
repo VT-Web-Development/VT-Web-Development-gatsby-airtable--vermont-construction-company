@@ -4,20 +4,15 @@ import styled from 'styled-components'
 const SearchButtons = ({ projects, setProjects, setBackToAll }) => {
   const [index, setIndex] = React.useState(0)
 
-  console.log(projects)
   const projectDatas = projects.map(projectData => {
     console.log(projectData)
     return projectData.node.data.body[0].items
   })
-  console.log(projectDatas)
 
   const tempTypes = [
     ...new Set(
       projectDatas.map(projectData => {
-        console.log(projectData)
-
         return projectData.map(item => {
-          console.log(item.type.text)
           return item.type.text
         })
       })
@@ -25,10 +20,8 @@ const SearchButtons = ({ projects, setProjects, setBackToAll }) => {
   ]
 
   const types = tempTypes.map(item => {
-    console.log(item)
     return ['all', ...item]
   })
-  console.log(types)
 
   const showProjects = (type, typeIndex) => {
     setIndex(typeIndex)
@@ -41,16 +34,13 @@ const SearchButtons = ({ projects, setProjects, setBackToAll }) => {
         })
       })
       setProjects(tempProjects)
-      console.log(tempProjects)
     }
   }
 
   return (
     <Wrapper>
       {types.map(item => {
-        console.log(item)
         return item.map((type, typeIndex) => {
-          console.log(type)
           return (
             <button
               key={typeIndex}
@@ -89,4 +79,5 @@ const Wrapper = styled.section`
     box-shadow: 0px 1.5px 0 var(--clr-grey-6);
   }
 `
+
 export default SearchButtons

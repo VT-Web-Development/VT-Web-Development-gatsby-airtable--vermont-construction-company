@@ -20,7 +20,6 @@ const Services = () => {
     services: { edges: services },
   } = useStaticQuery(query)
 
-  console.log(services)
   return (
     <Wrapper>
       <MDBContainer
@@ -39,12 +38,10 @@ const Services = () => {
         <MDBRow>
           {services &&
             services.map(service => {
-              console.log(service)
               const { title, description } = service.node.data
               const { slug } = service.node
               const { alt } = service.node.data.image
               const image = service.node.data.image.gatsbyImageData
-              console.log(slug)
 
               return (
                 <MDBCol

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { FaQuoteRight } from 'react-icons/fa'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 
 import Title from './Title'
@@ -141,4 +140,5 @@ const Wrapper = styled.section`
     transform: translate(-47%, -91%);
   }
 `
+
 export default Slider

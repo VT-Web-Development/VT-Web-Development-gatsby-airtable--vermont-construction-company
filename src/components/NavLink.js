@@ -7,15 +7,12 @@ import { GatsbyContext } from '../context/context'
 
 const NavLink = () => {
   const { navLink, linkKey } = useContext(GatsbyContext)
-  console.log(linkKey)
-  console.log(navLink)
   // const btnClasses = `${page === 'Get A Quote' ? 'call-to-action' : ``}`
 
   return (
     <>
       {linkKey.map(link => {
         const currLink = navLink[link]
-        console.log(currLink)
 
         const config = {
           classes: {
@@ -27,8 +24,6 @@ const NavLink = () => {
             }).concat(`${currLink?.props?.classes}`),
           },
         }
-
-        console.log(config)
 
         return (
           <NavLinkWrapper
@@ -53,7 +48,6 @@ const NavLink = () => {
 
             {currLink?.isDropdown && (
               <ul className="dropdown-menu">
-                {console.log(currLink)}
                 {currLink?.getDropdownOptions?.()?.map(option => (
                   <li key={option.label}>
                     <Link className="dropdown-item" to={option.url}>

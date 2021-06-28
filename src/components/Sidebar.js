@@ -7,7 +7,6 @@ import NavLink from './NavLink'
 
 const Sidebar = () => {
   const { navLink, hideSidebar } = useContext(GatsbyContext)
-  console.log(navLink)
 
   return (
     <Wrapper>
@@ -154,4 +153,5 @@ const Wrapper = styled.aside`
     }
   }
 `
+
 export default Sidebar

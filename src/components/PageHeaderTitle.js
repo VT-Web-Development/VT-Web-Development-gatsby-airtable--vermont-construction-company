@@ -19,4 +19,5 @@ const Wrapper = styled.div`
     font-weight: 500;
   }
 `
+
 export default PageHeaderTitle
