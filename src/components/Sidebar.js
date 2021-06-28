@@ -9,6 +9,7 @@ import NavLink from './NavLink'
 
 const Sidebar = () => {
   const { navLink, linkKey, hideSidebar } = useContext(GatsbyContext)
+  console.log(navLink)
 
   return (
     <Wrapper>
@@ -77,7 +78,7 @@ const Wrapper = styled.aside`
 
     .links {
       display: grid;
-      gap: 1rem 2rem;
+      gap: 0;
       @media (min-width: 768px) {
         grid-template-columns: 1fr 1fr;
       }
@@ -88,7 +89,8 @@ const Wrapper = styled.aside`
         gap: 0.75rem;
         grid-gap: 0.75rem;
         align-items: center;
-        padding: 3px 20px;
+        /* padding: 3px 20px; */
+        padding: 9px 20px;
         color: var(--clr-white);
         text-transform: capitalize;
         font-weight: 700;
@@ -103,6 +105,13 @@ const Wrapper = styled.aside`
           color: #0a2540;
         }
       }
+    }
+
+    .dropdown-menu {
+      color: var(--clr-white);
+      position: relative;
+      background-color: transparent;
+      display: contents;
     }
 
     .call-to-action {
