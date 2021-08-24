@@ -1,81 +1,32 @@
-## Setup
+# Vermont Construction Company
 
-## Styled Components
+## Tech Stack: Gatsby, Pricmic, and Styled Components.
+## Hosted by: Netlify.
 
-VS-Extension
+[Link to project](https://vermontconstructioncompany.net)
 
-vscode-styled-components
 
-Regural Setup
-
-```jsx
-import styled from 'styled-components'
-const NameOfElement = styled.htmlElement`
-your
-styles
-go
-here
-`
-```
-
-Global Styles
-
-```jsx
-import { createGlobalStyle } from "styled-components"
-
-const GlobalStyle = createGlobalStyle`
-your
-global
-styles
-go here
-`
-// wrap root element
-export const wrapRootElement = ({ element }) => {
-  return (
-    <>
-      <GlobalStyle />
-      {element}
-    </>
-  )
-}
-
-Both files
-- gatsby-browser.js
-- gatsby-ssr.js
+Clone project
 
 ```
-
-## Airtable
-
-[airtable](https://airtable.com/invite/r/h4p0v9Vg)
-
-## env variables
-
-gatsby-config
-
-```js
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+git clone https://github.com/VT-Web-Development/VT-Web-Development-gatsby-vermont-construction-company
 ```
 
-#### ROOT!!!!!!!!!!!!!!!
+First, run the development server:
 
-.env.development
+```
+yarn
+# and
+gatsby develop
+````
 
-## Algolia
+Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
 
-[algolia](https://www.algolia.com/);
+## Examples:
+Take a look at these couple examples that I have in my own portfolio:
 
-## Project Steps
+**Kissane Associates:** https://github.com/VT-Web-Development/gatsby-kissaneassociates
 
-- cover setup
-- styled components global css
-- basic gatsby background image
-- basic navbar
-- about
-- airtable
-- connect to airtable
-- env vars
-# VT-Web-Development-gatsby-airtable--vermont-construction-company
-# gatsby-airtable--vermont-construction-company.
+**Pho Thai Express Restaurant:** https://github.com/VT-Web-Development/gatsby-Pho-Thai-Express-restaurant/edit/main/README.md
+
+
